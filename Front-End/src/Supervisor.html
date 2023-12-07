@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supervisor</title>
+    <link href="./output.css" rel="stylesheet">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+    h1, h2{
+        font-family: "Roboto", sans-serif;
+    }
+    header p{
+        font-family: 'Montserrat', sans-serif;
+    }
+    p{
+        font-family: 'Raleway', sans-serif;
+    }
+    aside ul li p{
+        font-family: 'Montserrat', sans-serif;
+    }
+    #nombre, #ident, #carrer, #anio{
+        font-family: 'Montserrat', sans-serif;
+    }
+    button{
+        font-family: "Roboto", sans-serif; ;
+    }
+    .select input, .checkbox input {
+        margin-right: 2px;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border: 2px solid #555;
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+        outline: none;
+        cursor: pointer;
+    }
+    .select input:checked, .checkbox input:checked {
+        background-color: #555;
+    }
+    .contenedor_datos::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    .contenedor_datos::-webkit-scrollbar-thumb:horizontal {
+        background-color: #888;
+        border-radius: 10px;
+    }
+
+    .contenedor_datos::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 10px;
+    }
+
+    .contenedor_datos:hover {
+        scrollbar-color: #555;
+    }
+
+    .contenedor_datos {
+        height: auto;
+    }
+</style>
+
+<body class="bg-[#F6F6F6F7] m-0 p-0 w-full h-full min-h-screen">
+    <header class="top-0 w-full bg-[#18561E] fixed z-[2]">
+        <div class="flex items-center justify-between  px-4 py-2">
+            <div class="flex items-center">
+                <img src="img/fisc-icon.png" class="h-8 w-8 lg:h-16 lg:w-16 mr-6" alt="FISC Icon">
+                <h1 class="lg:text-2xl text-sm m-1 ml-4 text-[#FFFFFF]">Trabajos de Graduación</h1>
+            </div>
+            <div class="text-[#FFFFFF]">
+                <ul class="flex items-center">
+                    <li class="ml-4 mr-4">
+                        <img class="lg:h-10 lg:w-15 w-10 h-7 hidden lg:block xl:block" src="img/Notificacion.png" alt="Notificación Icon">
+                        <a href="#"></a>
+                    </li>
+                    <p class="text-[15] lg:text-[22px]">Admin</p>
+                    <li class="hover:bg-[#237C2C] p-2 space-x-1">
+                        <img class="lg:h-10 lg:w-15 w-10 h-7" src="img/icon-user.png" alt="Usuario Icon">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    
+    <div class="min-h-screen"> <!--Contenedor contenido-->
+        <aside class="absolute bottom-0 top-20 h-[105%] lg:h-[105%] xl:h-[105%] w-60 bg-[#237C2C] text-[#FFFFFF] z-[1] hidden lg:block xl:Block"> <!--hidden md:block es un @media que hace que el aside desaparezca-->
+            <a href="Estudiantes- Admin.html">
+                <div class="p-4  hover:bg-[#41b34c] flex items-center">
+                    <img class="h-8 w-8" src="img/Estudiante.png" alt="icono-estudiante">
+                    <p class="ml-4">Estudiantes</p>
+                </div>
+            </a>
+            <a href="Proyectos - Admin.html">
+                <div class="p-4 hover:bg-[#41b34c] flex items-center">
+                    <img class="h-8 w-8"  src="img/Proyecto.png" alt="icono-proyecto">
+                    <p class="ml-4">Proyectos</p>
+                </div>
+            </a>
+            <a href="Profesores - Admin.html">
+                <div class="p-4 hover:bg-[#41b34c] flex items-center">
+                    <img class="h-8 w-8"  src="img/Profesor.png" alt="icono-profesor">
+                    <p class="ml-4">Profesores</p>
+                </div>
+            </a>
+            <a href="Sede.html">
+                <div class="p-4 hover:bg-[#41b34c] flex items-center">
+                    <img class="h-8 w-8"  src="img/sede.png" alt="icono-sede">
+                    <p class="ml-4">Sede</p>
+                </div>
+            </a>
+            <a href="Supervisor.html">
+                <div class="p-4 bg-[#18561E] flex items-center">
+                    <img class="h-8 w-8"  src="img/Supervisor.png" alt="icono-supervisor">
+                    <p class="ml-4">Supervisor</p>
+                </div>
+            </a>
+            <a href="Empresa - Admin.html">
+                <div class="p-4 hover:bg-[#41b34c] flex items-center">
+                    <img class="h-8 w-8"  src="img/Empresa.png" alt="icono-Empresa">
+                    <p class="ml-4">Empresa</p>
+                </div>
+            </a>
+            <a href="Departamento.html">
+                <div class="p-4 hover:bg-[#41b34c] flex items-center">
+                    <img class="h-8 w-8"  src="img/departamento.png" alt="icono-Departamento">
+                    <p class="ml-4">Departamento</p>
+                </div>
+            </a>
+            <a href="Carrera.html">
+                <div class="p-4 hover:bg-[#41b34c] flex items-center">
+                    <img class="h-8 w-8"  src="img/carrera.png" alt="icono-carrera">
+                    <p class="ml-4">Carrera</p>
+                </div>
+            </a>
+            <a href="Sustentaciones.html">
+                <div class="p-4 hover:bg-[#41b34c] flex items-center">
+                    <img class="h-8 w-8"  src="img/sustenta.png" alt="icono-Sustentaciones">
+                    <p class="ml-4">Sustentaciones</p>
+                </div>
+            </a>
+            <a href="Evaluacion.html">
+                <div class="p-4 hover:bg-[#41b34c] flex items-center">
+                    <img class="h-8 w-8"  src="img/Evaluacion.png" alt="icono-evaluación">
+                    <p class="ml-4">Evaluación</p>
+                </div>
+            </a>
+            <a href="#">
+                <div class="p-4 hover:bg-[#41b34c] flex items-center">
+                    <img class="h-7 w-8" src="img/log out.png" alt="cerra sesión">
+                    <p class="ml-4">Cerrar Sesión</p>
+                </div>
+            </a>
+        </aside>
+        <div class="w-full relative min-h-screen">
+            <div class="lg:ml-60 pl-7 xl:pl-5 lg:pl-5 relative w-full xl:relative xl:w-auto lg:w-auto lg:relative mt-[6rem] mb-8">
+
+                <h2 class="font-roboto text-[#302f2f] mb-0 text-lg xl:text-[1.7rem] lg:text-[1.6rem]">
+                    Información de Supervisor
+                </h2>
+                
+                <div class="flex flex-col lg:flex-row mt-4 bg-[#edeaea] rounded-md p-2 h-auto w-auto mr-10 justify-around">
+                    <div class="flex-col">
+                        <div class="lg:mr-10 lg:w-auto w-auto">
+                            <p>Nombre</p>
+                            <input type="search" placeholder="Nombre de supervisor" class="w-full lg:w-96 xl:w-96 mt-2 mb-2 h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500">
+                        </div>
+                    </div>
+                    <div class="flex-col">
+                        <div class=" w-auto lg:w-auto lg:ml-30">
+                            <p>Empresa</p>
+                            <input type="search" placeholder="Código de Empresa" class="w-full lg:w-96 xl:w-96 mt-2 mb-2 h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500">
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 ml-1">
+                    <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-4 py-2 font-roboto text-md mb-2 md:mb-0 md:mr-4">Añadir</button>
+                    <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-4 py-2 ml-4 font-roboto text-md mb-2 md:mb-0 md:mr-4">Actualizar</button>
+                    <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-4 py-2 ml-4 font-roboto text-md">Eliminar</button>
+                </div>
+            </div>
+            <div class="max-h-96 lg:ml-64 ml-9 bg-white mt-8 rounded-md shadow-md overflow-auto mr-10 relative contenedor_datos">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <th class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
+                            <input type="checkbox" class="ml-2" id="selectAll"/>
+                            <label for="selectAll" class="p-1"></label>
+                        </th>
+                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Código</th>
+                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Nombre</th>
+                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Apellido</th>
+                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Código de empresa</th>
+                    </thead>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer class="relative z-10 bg-[#444444] text-white py-5 w-full xl:w-full">
+        <div class="flex flex-col lg:flex-row lg:justify-around items-center justify-center">
+            <img src="https://github.com/saunpain/Proyecto1_DS4/blob/main/img/Logo%20UTP%20Blanco.png?raw=true" alt="logo de la UTP" class="h-15 w-11 lg:w-[4.2rem]">
+            <div class="text-white text-center mt-3 justify-center lg:text-left xl:text-left lg: block">
+                <p>Este sitio es administrado por la Facultad <br>
+                    de Ingeniería en Sistemas <br>
+                    Computacionales, Proyecto web donado<br>
+                    por el grupo <a href="#">1LS121</a> segundo semestre<br>
+                    2023
+                </p>
+            </div>
+            <div class="flex-col text-white justify-center items-center mt-3 ml-3 lg:mt-0 lg:ml-0 ">
+                <h1 class="flex font-Roboto text-base mb-1 justify-center lg:block xl:block">Contacto</h1>
+                <p class="mb-0 lg:w-auto xl:w-auto w-[20rem] lg:text-left xl:text-left text-center">Avenida Universidad Tecnológica de Panamá, Vía Puente <br>
+                    Centenario, Campus Metropolitano Dr. Victor Levi Sasso, <br>
+                    Edificio No.3, tercer piso. <br>
+                    Teléfono: (507) 560-3656<br>
+                    E-mail: sindy.delosrios@utp.ac.pa
+                </p>
+            </div>
+            <div class="flex items-center space-x-2 mt-8">
+                <img  src="https://github.com/saunpain/Proyecto1_DS4/blob/main/img/facebook.png?raw=true" alt="logo de facebook" class="w-6 h-6">
+                <img  src="https://github.com/saunpain/Proyecto1_DS4/blob/main/img/instagram.png?raw=true" alt="logo de instagram" class="w-6 h-6">
+                <img  src="https://github.com/saunpain/Proyecto1_DS4/blob/main/img/youtube.png?raw=true" alt="logo de youtube" class="w-6 h-6">
+                <img  src="https://github.com/saunpain/Proyecto1_DS4/blob/main/img/Linkedin.png?raw=true" alt="logo de linkedin" class="w-6 h-6">
+                <img  src="https://github.com/saunpain/Proyecto1_DS4/blob/main/img/twitter.png?raw=true" alt="logo de twitterX" class="w-6 h-6">
+            </div>
+        </div>
+        <div class="text-white text-center mt-8">
+            <p>© 2023 - Universidad Tecnológica de Panamá</p>
+        </div>
+    </footer>
+</body>
+</html>
