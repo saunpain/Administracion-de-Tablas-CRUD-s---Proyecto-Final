@@ -223,18 +223,18 @@
                 </div>
             
                 <div class="mt-8 ml-1">
-                    <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-2 py-2 md:px-4 lg:px-4 xl:px-4 2xl:px-5 font-roboto text-md mb-2 md:mb-0 md:mr-4">Añadir</button>
+                    <button onclick="añadirRegistro()" class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-2 py-2 md:px-4 lg:px-4 xl:px-4 2xl:px-5 font-roboto text-md mb-2 md:mb-0 md:mr-4">Añadir</button>
                     <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-2 py-2 md:px-4 lg:px-4 xl:px-4 2xl:px-5 ml-4 font-roboto text-md mb-2 md:mb-0 md:mr-4">Actualizar</button>
                     <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-2 py-2 md:px-4 lg:px-4 xl:px-4 2xl:px-5 ml-4 font-roboto text-md">Eliminar</button>
                 </div>
             </div>
             <div class="max-h-96 2xl:max-h-[50rem] lg:ml-64 ml-9 bg-white mt-8 rounded-md shadow-md overflow-auto mr-10 mb-8 relative contenedor_datos text-[14px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[18px]">
-                <table class="w-full border-collapse">
+                <table id="datos" class="w-full border-collapse">
                     <thead>
                         <tr class="bg-white">
                             <th class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                                <input type="checkbox" class="ml-2" id="selectAll"/>
-                                <label for="selectAll" class="p-1"></label>
+                                <input type="checkbox" class="ml-3.5" id="selectAll"/>
+                                <label for="selectAll" class="p-2"></label>
                             </th>
                             <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Cédula</th>
                             <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Primer nombre</th>
