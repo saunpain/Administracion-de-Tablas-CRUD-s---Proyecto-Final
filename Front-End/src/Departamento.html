@@ -66,14 +66,29 @@
     .contenedor_datos {
         height: auto;
     }
+    #toggleButton.closed::before {
+    content: '☰';
+    }
+    #toggleButton.opened::before {
+        content: '✕';
+    }
+    #contenido {
+    pointer-events: auto;
+    transition: background-color 0.3s ease;
+    }
+    #toggleButton.opened + #contenido{
+        pointer-events: none;
+        background-color: rgba(0, 0, 0, 0.5);;
+    }
 </style>
 
-<body class="bg-[#F6F6F6F7] m-0 p-0 w-full h-full min-h-screen">
+<body class="bg-[#F6F6F6F7] m-0 p-0 w-full h-screen" id="contenido">
     <header class="top-0 w-full bg-[#18561E] fixed z-[2]">
         <div class="flex items-center justify-between  px-4 py-2">
             <div class="flex items-center">
-                <img src="img/fisc-icon.png" class="h-8 w-8 lg:h-16 lg:w-16 mr-6" alt="FISC Icon">
-                <h1 class="lg:text-2xl text-sm m-1 ml-4 text-[#FFFFFF]">Trabajos de Graduación</h1>
+                <button id="toggleButton" class="p-2 text-[#FFFFFF] text-3xl lg:hidden xl:hidden fixed closed"></button>
+                <img src="img/fisc-icon.png" class="lg:h-16 lg:w-16 mr-6 hidden lg:block xl:Block" alt="FISC Icon">
+                <h1 class="lg:text-2xl text-sm m-1 ml-4 text-[#FFFFFF] hidden lg:block xl:Block">Trabajos de Graduación</h1>
             </div>
             <div class="text-[#FFFFFF]">
                 <ul class="flex items-center">
@@ -91,7 +106,7 @@
     </header>
     
     <div class="min-h-screen"> <!--Contenedor contenido-->
-        <aside class="absolute top-20 h-[116%] w-60 bg-[#237C2C] text-[#FFFFFF] z-[1] hidden lg:block xl:Block"> <!--hidden md:block es un @media que hace que el aside desaparezca-->
+        <aside id="aside" class="fixed xl:absolute lg:absolute md:absolute 2xl:absolute top-[3.7rem] lg:top-20 xl:top-20 2xl:top-20 overflow-y-scroll lg:overflow-y-visible xl:overflow-y-visible h-screen lg:h-[116%] xl:h-[116%] w-60 bg-[#237C2C] text-[#FFFFFF] z-[1] hidden lg:block xl:Block">
             <a href="Estudiantes- Admin.html">
                 <div class="p-4 hover:bg-[#41b34c] flex items-center">
                     <img class="h-8 w-8" src="img/Estudiante.png" alt="icono-estudiante">
@@ -160,18 +175,18 @@
             </a>
         </aside>
 
-        <div class="w-full relative min-h-screen">
-            <div class="lg:ml-60 pl-7 xl:pl-5 lg:pl-5 relative w-full xl:relative xl:w-auto lg:w-auto lg:relative mt-[6rem] mb-8">
+        <div class="w-full relative min-h-screen pointer-events-auto">
+            <div class="lg:ml-60  pl-7 xl:pl-5 lg:pl-5 relative w-full xl:relative xl:w-auto lg:w-auto lg:relative mt-[6rem]">
                 <h2 class="font-roboto text-[#302f2f] mb-0 text-lg xl:text-[1.7rem] lg:text-[1.6rem]">
                     Información de Departamentos
                 </h2>
                 <div class="mt-8 ml-1">
-                    <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-4 py-2 font-roboto text-md mb-2 md:mb-0 md:mr-4">Añadir</button>
-                    <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-4 py-2 ml-4 font-roboto text-md mb-2 md:mb-0 md:mr-4">Actualizar</button>
-                    <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-4 py-2 ml-4 font-roboto text-md">Eliminar</button>
+                    <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-2 py-2 md:px-4 lg:px-4 xl:px-4 2xl:px-5 font-roboto text-md mb-2 md:mb-0 md:mr-4">Añadir</button>
+                    <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-2 py-2 md:px-4 lg:px-4 xl:px-4 2xl:px-5 ml-4 font-roboto text-md mb-2 md:mb-0 md:mr-4">Actualizar</button>
+                    <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-2 py-2 md:px-4 lg:px-4 xl:px-4 2xl:px-5 ml-4 font-roboto text-md">Eliminar</button>
                 </div>
             </div>
-            <div class="max-h-96 lg:ml-64 ml-9 bg-white mt-8 rounded-md shadow-md overflow-auto mr-10 relative contenedor_datos">
+            <div class="max-h-96 2xl:max-h-[50rem] lg:ml-64 ml-9 bg-white mt-8 rounded-md shadow-md overflow-auto mr-10 mb-8 relative contenedor_datos text-[14px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[18px]">
                 <table class="w-full border-collapse">
                     <thead>
                         <tr class="bg-white">
@@ -220,5 +235,6 @@
             <p>© 2023 - Universidad Tecnológica de Panamá</p>
         </div>
     </footer>
+    <script src="main.js"></script>
 </body>
 </html>
