@@ -83,7 +83,7 @@
     
 </style>
 
-<body class="bg-[#F6F6F6F7] m-0 p-0 w-full h-screen" id="contenido">
+<body class="bg-[#F6F6F6F7] m-0 p-0 w-full h-screen">
     <header class="top-0 w-full bg-[#18561E] fixed z-[2]">
         <div class="flex items-center justify-between  px-4 py-2">
             <div class="flex items-center">
@@ -105,8 +105,9 @@
             </div>
         </div>
     </header>
-    <div class="min-h-screen"> <!--Contenedor contenido-->
-        <aside id="aside" class="fixed xl:absolute lg:absolute md:absolute 2xl:absolute top-[3.7rem] lg:top-20 xl:top-20 2xl:top-20 overflow-y-scroll lg:overflow-y-visible xl:overflow-y-visible h-screen lg:h-[116%] xl:h-[116%] w-60 bg-[#237C2C] text-[#FFFFFF] z-[1] hidden lg:block xl:Block">
+    
+    <div class="h-[120vh] lg:h-[126vh] xl:h-[120.4vh]"> <!--Contenedor contenido-->
+        <aside id="aside" class="absolute top-[3.7rem] lg:top-20 xl:top-20 2xl:top-20 overflow-y-scroll lg:overflow-y-visible xl:overflow-y-visible h-[126%] md:h-[158.5%] lg:h-[140.6%] xl:h-[130%] w-60 bg-[#237C2C] text-[#FFFFFF] z-[1] hidden lg:block xl:Block">
             <a href="Estudiantes- Admin.html">
                 <div class="p-3 bg-[#18561E]  flex items-center">
                     <img class="h-8 w-8" src="img/Estudiante.png" alt="icono-estudiante">
@@ -165,6 +166,24 @@
                 <div class="p-3 hover:bg-[#41b34c] flex items-center">
                     <img class="h-8 w-8"  src="img/Evaluacion.png" alt="icono-evaluación">
                     <p class="ml-4">Evaluación</p>
+                </div>
+            </a>
+            <a href="Practica_Profesional.html">
+                <div class="p-3 hover:bg-[#41b34c] flex items-center">
+                    <img class="h-8 w-8"  src="img/practica.png" alt="icono-proyecto-practica">
+                    <p class="ml-4">Práctica Profesional</p>
+                </div>
+            </a>
+            <a href="Usuarios.html">
+                <div class="p-3 hover:bg-[#41b34c] flex items-center">
+                    <img class="h-7 w-8" src="img/usuarios.png" alt="icono-usuarios">
+                    <p class="ml-4">Usuarios</p>
+                </div>
+            </a>
+            <a href="Administrativos.html">
+                <div class="p-3 hover:bg-[#41b34c] flex items-center">
+                    <img class="h-7 w-8" src="img/admin.png" alt="icono-administrativo">
+                    <p class="ml-4">Administrativos</p>
                 </div>
             </a>
             <a href="#">
@@ -228,7 +247,7 @@
                     <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-2 py-2 md:px-4 lg:px-4 xl:px-4 2xl:px-5 ml-4 font-roboto text-md">Eliminar</button>
                 </div>
             </div>
-            <div class="max-h-96 2xl:max-h-[50rem] lg:ml-64 ml-9 bg-white mt-8 rounded-md shadow-md overflow-auto mr-10 mb-8 relative contenedor_datos text-[14px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[18px]">
+            <div class="max-h-[40vh] md:max-h-[40rem] lg:max-h-[25rem] xl:max-h-[32rem] lg:ml-64 ml-9 bg-white mt-8 rounded-md shadow-md overflow-auto mr-10 mb-8 relative contenedor_datos text-[14px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[18px]">
                 <table id="datos" class="w-full border-collapse">
                     <thead>
                         <tr class="bg-white">
@@ -254,7 +273,7 @@
                     
                     <tr class="bg-white">
                         <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-2" id="selectRow1"/>
+                            <input type="checkbox" class="ml-3.5" id="selectRow1"/>
                             <label for="selectRow1"></label>
                         </td>
                         <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">07-0000-123456</td>
@@ -268,7 +287,7 @@
                     </tr>
                     <tr>
                         <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-2" id="selectRow1" />
+                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
                             <label for="selectRow1"></label>
                         </td>
                         <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">08-1000-995200</td>
@@ -282,7 +301,7 @@
                     </tr>
                     <tr>
                         <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-2" id="selectRow1" />
+                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
                             <label for="selectRow1"></label>
                         </td>
                         <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">04-4567-000345</td>
@@ -296,7 +315,7 @@
                     </tr>
                     <tr>
                         <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-2" id="selectRow1" />
+                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
                             <label for="selectRow1"></label>
                         </td>
                         <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">08-0340-004500</td>
@@ -310,7 +329,7 @@
                     </tr>
                     <tr>
                         <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-2" id="selectRow1" />
+                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
                             <label for="selectRow1"></label>
                         </td>
                         <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">08-1000-995200</td>
@@ -325,7 +344,7 @@
                     
                     <tr>
                         <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-2" id="selectRow1" />
+                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
                             <label for="selectRow1"></label>
                         </td>
                         <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">08-0000-789012</td>
@@ -340,7 +359,7 @@
                     
                     <tr>
                         <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-2" id="selectRow1" />
+                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
                             <label for="selectRow1"></label>
                         </td>
                         <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">09-0000-345678</td>
@@ -355,7 +374,7 @@
                     
                     <tr>
                         <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-2" id="selectRow1" />
+                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
                             <label for="selectRow1"></label>
                         </td>
                         <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">10-0000-123456</td>
@@ -370,7 +389,7 @@
                     
                     <tr>
                         <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-2" id="selectRow1" />
+                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
                             <label for="selectRow1"></label>
                         </td>
                         <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">11-0000-567890</td>
@@ -384,7 +403,7 @@
                     </tr>
                     <tr>
                         <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-2" id="selectRow1" />
+                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
                             <label for="selectRow1"></label>
                         </td>
                         <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">09-1000-654321</td>
@@ -398,7 +417,7 @@
                     </tr>
                     <tr>
                         <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-2" id="selectRow1" />
+                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
                             <label for="selectRow1"></label>
                         </td>
                         <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">09-1000-654321</td>
@@ -412,7 +431,7 @@
                     </tr>
                     <tr>
                         <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-2" id="selectRow1" />
+                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
                             <label for="selectRow1"></label>
                         </td>
                         <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">09-1000-654321</td>
@@ -426,7 +445,7 @@
                     </tr>
                     <tr>
                         <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-2" id="selectRow1" />
+                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
                             <label for="selectRow1"></label>
                         </td>
                         <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">09-1000-654321</td>
@@ -440,7 +459,7 @@
                     </tr>
                     <tr>
                         <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-2" id="selectRow1" />
+                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
                             <label for="selectRow1"></label>
                         </td>
                         <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">09-1000-654321</td>
