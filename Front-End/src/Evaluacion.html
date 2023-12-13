@@ -7,6 +7,7 @@
     <link href="./output.css" rel="stylesheet">
 </head>
 <style>
+    /*Import de fuentes Roboto, Montserrat, Raleway*/
     @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
@@ -49,7 +50,7 @@
         height: 10px;
     }
 
-    .contenedor_datos::-webkit-scrollbar-thumb:horizontal {
+    .contenedor_datos::-webkit-scrollbar-thumb:horizontal { /* Le da estilo a las barras de scroll */
         background-color: #888;
         border-radius: 10px;
     }
@@ -67,24 +68,16 @@
         height: auto;
     }
     #toggleButton.closed::before {
-    content: '☰';
+    content: '☰'; /* Icono para desplegar el aside */
     }
     #toggleButton.opened::before {
-        content: '✕';
-    }
-    #contenido {
-    pointer-events: auto;
-    transition: background-color 0.3s ease;
-    }
-    #toggleButton.opened + #contenido{
-        pointer-events: none;
-        background-color: rgba(0, 0, 0, 0.5);;
+        content: '✕'; /* Icono para cerrar el aside */
     }
 </style>
 
 <body class="bg-[#F6F6F6F7] m-0 p-0 w-full h-screen">
     <header class="top-0 w-full bg-[#18561E] fixed z-[2]">
-        <div class="flex items-center justify-between  px-4 py-2">
+        <div class="flex items-center justify-between  px-4 py-2"> <!--Div que contiene los elementos del encabezado-->
             <div class="flex items-center">
                 <button id="toggleButton" class="p-2 text-[#FFFFFF] text-3xl lg:hidden xl:hidden fixed closed"></button>
                 <img src="img/fisc-icon.png" class="lg:h-16 lg:w-16 mr-6 hidden lg:block xl:Block" alt="FISC Icon">
@@ -107,6 +100,7 @@
     
     <div class="h-[120vh] lg:h-[126vh] xl:h-[120.4vh]"> <!--Contenedor contenido-->
         <aside id="aside" class="absolute top-[3.7rem] lg:top-20 xl:top-20 2xl:top-20 overflow-y-scroll lg:overflow-y-visible xl:overflow-y-visible h-[126%] md:h-[158.5%] lg:h-[140.6%] xl:h-[130%] w-60 bg-[#237C2C] text-[#FFFFFF] z-[1] hidden lg:block xl:Block">
+            <!--Opciones del Nav-->
             <a href="Estudiantes- Admin.html">
                 <div class="p-3 hover:bg-[#41b34c] flex items-center">
                     <img class="h-8 w-8" src="img/Estudiante.png" alt="icono-estudiante">
@@ -193,8 +187,8 @@
             </a>
         </aside>
 
-        <div class="w-full relative min-h-screen pointer-events-auto">
-            <div class="lg:ml-60 pl-7 xl:pl-5 lg:pl-5 relative w-full xl:relative xl:w-auto lg:w-auto lg:relative mt-[6rem]">
+        <div class="w-full relative min-h-screen pointer-events-auto"> <!--Contenedor que abarca elementos como los filtros y la tabla de datos-->
+            <div class="lg:ml-60 pl-7 xl:pl-5 lg:pl-5 relative w-full xl:relative xl:w-auto lg:w-auto lg:relative mt-[6rem]"> <!--Contendor de los filtros y botones de acciones-->
                 <h2 class="font-roboto text-[#302f2f] mb-0 text-lg xl:text-[1.7rem] lg:text-[1.6rem]">
                     Información de Evaluaciones
                 </h2>
@@ -219,20 +213,8 @@
                     <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-2 py-2 md:px-4 lg:px-4 xl:px-4 2xl:px-5 ml-4 font-roboto text-md">Eliminar</button>
                 </div>
             </div>
+            <!-- Contenedor de la tabla y sus datos -->
             <div class="max-h-[40vh] md:max-h-[30rem] lg:max-h-[30rem] xl:max-h-[35rem] lg:ml-64 ml-9 bg-white mt-8 rounded-md shadow-md overflow-auto mr-10 mb-8 relative contenedor_datos text-[14px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[18px]">
-                <!--<table id="datos" class="w-full border-collapse">
-                    <thead>
-                        <tr class="bg-white">
-                            <th class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                                <input type="checkbox" class="ml-3.5" id="selectAll"/>
-                                <label for="selectAll" class="p-2"></label>
-                            </th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Códido de proyecto</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Fecha de evaluación</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Evaluación</th>
-                        </tr>
-                    </thead>
-                </table>-->
                 <table id="datos" class="w-full border-collapse">
                     <thead>
                         <tr class="bg-white">
@@ -240,222 +222,12 @@
                                 <input type="checkbox" class="ml-3.5" id="selectAll"/>
                                 <label for="selectAll" class="p-2"></label>
                             </th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Cédula</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Primer nombre</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Segundo nombre</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Primer apellido</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Segundo apelido</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Teléfono</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Correo</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Código de proyecto</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Etapa</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Carrera</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Año</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Índice</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Código de sede</th>
+                            <!-- Encabezados de la tabla -->
+                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Códido de proyecto</th>
+                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Fecha de evaluación</th>
+                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Evaluación</th>
                         </tr>
                     </thead>
-                    
-                    <tr class="bg-white">
-                        <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-3.5" id="selectRow1"/>
-                            <label for="selectRow1"></label>
-                        </td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">07-0000-123456</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Moisés</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Astroberto</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Barrios</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Alima</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Lic. en Desarrollo de Software</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">4</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Verificación</td>
-                    </tr>
-                    <tr>
-                        <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
-                            <label for="selectRow1"></label>
-                        </td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">08-1000-995200</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Caballes</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Loganzo</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Marco</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Castillo</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Lic. en Redes Informáticas</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">4</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Entrega</td>
-                    </tr>
-                    <tr>
-                        <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
-                            <label for="selectRow1"></label>
-                        </td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">04-4567-000345</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Nadim</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Cadorza</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Zapateiro</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Torres</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Lic. en Redes Informáticas</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">4</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Entrega</td>
-                    </tr>
-                    <tr>
-                        <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
-                            <label for="selectRow1"></label>
-                        </td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">08-0340-004500</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Humberto</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Tocayo</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Nissan</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Polo</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Lic. en Ciberseguridad</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">4</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Evaluación</td>
-                    </tr>
-                    <tr>
-                        <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
-                            <label for="selectRow1"></label>
-                        </td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">08-1000-995200</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Odeth</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Nohemy</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Vásquez</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Arevalo</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Lic. en Desarrollo de Software</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">4</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Aprobación</td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
-                            <label for="selectRow1"></label>
-                        </td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">08-0000-789012</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Mariana</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Leticia</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Rodríguez</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">García</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Lic en Ing. de Sistemas de Información</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">5</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Revisión</td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
-                            <label for="selectRow1"></label>
-                        </td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">09-0000-345678</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Carlos</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Andrés</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Mendoza</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Rivera</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Lic. en Informática Aplicada a la Educación</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">4</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Evaluación</td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
-                            <label for="selectRow1"></label>
-                        </td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">10-0000-123456</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Ana</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Isabel</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Fernández</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Jiménez</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Lic. en Ing. de Sistemas de Información</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">5</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Aprobación</td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
-                            <label for="selectRow1"></label>
-                        </td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">11-0000-567890</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Javier</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Antonio</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Gómez</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Ortega</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Lic. en Ing. de Software</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">5</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Sustentación</td>
-                    </tr>
-                    <tr>
-                        <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
-                            <label for="selectRow1"></label>
-                        </td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">09-1000-654321</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Valentina</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Milagros</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Salazar</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Bravo</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Ing. en Desarrollo de Software</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">4</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Evaluación</td>
-                    </tr>
-                    <tr>
-                        <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
-                            <label for="selectRow1"></label>
-                        </td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">09-1000-654321</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Valentina</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Milagros</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Salazar</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Bravo</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Ing. en Desarrollo de Software</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">4</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Evaluación</td>
-                    </tr>
-                    <tr>
-                        <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
-                            <label for="selectRow1"></label>
-                        </td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">09-1000-654321</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Valentina</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Milagros</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Salazar</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Bravo</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Ing. en Desarrollo de Software</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">4</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Evaluación</td>
-                    </tr>
-                    <tr>
-                        <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
-                            <label for="selectRow1"></label>
-                        </td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">09-1000-654321</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Valentina</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Milagros</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Salazar</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Bravo</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Ing. en Desarrollo de Software</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">4</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Evaluación</td>
-                    </tr>
-                    <tr>
-                        <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-3.5" id="selectRow1" />
-                            <label for="selectRow1"></label>
-                        </td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">09-1000-654321</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Valentina</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Milagros</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Salazar</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Bravo</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Ing. en Desarrollo de Software</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">4</td>
-                        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Evaluación</td>
-                    </tr>
                 </table>
             </div>
         </div>

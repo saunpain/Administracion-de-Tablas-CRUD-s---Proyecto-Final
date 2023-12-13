@@ -1,3 +1,4 @@
+/* Función para desplegar aside en celulares */
 document.addEventListener('DOMContentLoaded', function () {
     var toggleButton = document.getElementById('toggleButton');
     var miAside = document.getElementById('aside');
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
+/* Función para añadir celdas a las tablas */
 function añadirRegistro() {
     var tabla = document.getElementById("datos");
 
@@ -41,7 +42,7 @@ function añadirRegistro() {
             
             btnEliminar.appendChild(iconEliminar);
             btnEliminar.addEventListener('click', function () {
-                tabla.deleteRow(nuevaCelda.rowIndex);
+                tabla.deleteRow(nuevaCelda.rowIndex); /* Elimina la celda creada */
             });
 
             nueva.appendChild(btnEliminar);
@@ -52,17 +53,16 @@ function añadirRegistro() {
             if (nombreCelda.includes('fecha')) {
                 var fechaInput = document.createElement('input');
                 fechaInput.type = 'date';
-                fechaInput.className = "border border-solid border-gray-300 text-center px-2 py-1 w-full h-full box-border";
+                fechaInput.className = "border border-solid border-gray-300 text-center px-2 py-1 w-full h-full box-border"; /* Le da estilo a las celdas agregadas formato fecha*/
                 nueva.appendChild(fechaInput);
             } else {
                 var registro = document.createElement('input');
                 registro.type = "text";
-                registro.className = "border border-solid border-gray-300 text-center px-2 py-1 w-full h-full box-border";
+                registro.className = "border border-solid border-gray-300 text-center px-2 py-1 w-full h-full box-border";  /* Le da estilo a las celdas agregadas formato texto*/
                 nueva.appendChild(registro);
             }
         }
     }
-
     nuevaCelda.cells[0].querySelector('input').focus();
 }
 
