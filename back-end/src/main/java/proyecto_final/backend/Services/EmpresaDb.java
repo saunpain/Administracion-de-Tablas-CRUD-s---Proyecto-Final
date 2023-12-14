@@ -41,4 +41,17 @@ public class EmpresaDb {
         }
         return empresas;
     }
+
+    public int EliminarEmpresa(String ce){ //ce = Codigo Empresa
+        int resultado = 0;
+        try{
+            Statement stmt = cn.createStatement();
+            String query = "delete from Empresa where cod_empresa = '" + ce + "'";
+
+            return stmt.executeUpdate(query);
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
 }

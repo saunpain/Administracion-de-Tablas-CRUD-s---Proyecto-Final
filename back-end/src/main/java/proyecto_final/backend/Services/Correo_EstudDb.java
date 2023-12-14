@@ -42,4 +42,17 @@ public class Correo_EstudDb {
 
         return correos;
     }
+
+    public int EliminarCorreoEstudiante(String cedula){ //cedula = Cedula Estudiante
+        int resultado = 0;
+        try{
+            Statement stmt = cn.createStatement();
+            String query = "delete from Correo_Estud where cedula = '" + cedula + "'";
+
+            return stmt.executeUpdate(query);
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
 }

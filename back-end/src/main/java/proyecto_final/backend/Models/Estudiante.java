@@ -13,10 +13,10 @@ public class Estudiante {
     private String cod_carrera;
     private String cod_sede;
 
-    private Estudiante(){
+    public Estudiante(){
     }
 
-    private Estudiante(String Cedula, String Pri_nom, String Seg_nom, String Pri_apellido, 
+    public Estudiante(String Cedula, String Pri_nom, String Seg_nom, String Pri_apellido, 
     String Seg_apellido, int Anio_cursa, String Semestre, float Indice, String Cod_proyecto, 
     String Cod_carrera, String Cod_sede)
     {

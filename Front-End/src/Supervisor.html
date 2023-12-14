@@ -7,7 +7,6 @@
     <link href="./output.css" rel="stylesheet">
 </head>
 <style>
-    /*Import de fuentes Roboto, Montserrat, Raleway*/
     @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
@@ -50,7 +49,7 @@
         height: 10px;
     }
 
-    .contenedor_datos::-webkit-scrollbar-thumb:horizontal { /* Le da estilo a las barras de scroll */
+    .contenedor_datos::-webkit-scrollbar-thumb:horizontal {
         background-color: #888;
         border-radius: 10px;
     }
@@ -67,29 +66,14 @@
     .contenedor_datos {
         height: auto;
     }
-    #toggleButton.closed::before {
-        content: '☰'; /* Icono para desplegar el aside */
-    }
-    #toggleButton.opened::before {
-        content: '✕'; /* Icono para cerrar el aside */
-    }
-    #contenido {
-        pointer-events: auto;
-        transition: background-color 0.3s ease;
-    }
-    #toggleButton.opened + #contenido{
-        pointer-events: none;
-        background-color: rgba(0, 0, 0, 0.5);;
-    }
 </style>
 
-<body class="bg-[#F6F6F6F7] m-0 p-0 w-full h-screen" id="contenido">
+<body class="bg-[#F6F6F6F7] m-0 p-0 w-full h-full min-h-screen">
     <header class="top-0 w-full bg-[#18561E] fixed z-[2]">
-        <div class="flex items-center justify-between  px-4 py-2"><!--Div que contiene los elementos del encabezado-->
+        <div class="flex items-center justify-between  px-4 py-2">
             <div class="flex items-center">
-                <button id="toggleButton" class="p-2 text-[#FFFFFF] text-3xl lg:hidden xl:hidden fixed closed"></button>
-                <img src="img/fisc-icon.png" class="lg:h-16 lg:w-16 mr-6 hidden lg:block xl:Block" alt="FISC Icon">
-                <h1 class="lg:text-2xl text-sm m-1 ml-4 text-[#FFFFFF] hidden lg:block xl:Block">Trabajos de Graduación</h1>
+                <img src="img/fisc-icon.png" class="h-8 w-8 lg:h-16 lg:w-16 mr-6" alt="FISC Icon">
+                <h1 class="lg:text-2xl text-sm m-1 ml-4 text-[#FFFFFF]">Trabajos de Graduación</h1>
             </div>
             <div class="text-[#FFFFFF]">
                 <ul class="flex items-center">
@@ -106,96 +90,77 @@
         </div>
     </header>
     
-    <div class="h-[120vh] lg:h-[126vh] xl:h-[120.4vh]"> <!--Contenedor contenido-->
-        <aside id="aside" class="absolute top-[3.7rem] lg:top-20 xl:top-20 2xl:top-20 overflow-y-scroll lg:overflow-y-visible xl:overflow-y-visible h-[126%] md:h-[158.5%] lg:h-[140.6%] xl:h-[130%] w-60 bg-[#237C2C] text-[#FFFFFF] z-[1] hidden lg:block xl:Block">
-            <!--Opciones del Nav-->
+    <div class="min-h-screen"> <!--Contenedor contenido-->
+        <aside class="absolute bottom-0 top-20 h-[105%] lg:h-[105%] xl:h-[105%] w-60 bg-[#237C2C] text-[#FFFFFF] z-[1] hidden lg:block xl:Block"> <!--hidden md:block es un @media que hace que el aside desaparezca-->
             <a href="Estudiantes- Admin.html">
-                <div class="p-3  hover:bg-[#41b34c] flex items-center">
+                <div class="p-4  hover:bg-[#41b34c] flex items-center">
                     <img class="h-8 w-8" src="img/Estudiante.png" alt="icono-estudiante">
                     <p class="ml-4">Estudiantes</p>
                 </div>
             </a>
             <a href="Proyectos - Admin.html">
-                <div class="p-3 hover:bg-[#41b34c] flex items-center">
+                <div class="p-4 hover:bg-[#41b34c] flex items-center">
                     <img class="h-8 w-8"  src="img/Proyecto.png" alt="icono-proyecto">
                     <p class="ml-4">Proyectos</p>
                 </div>
             </a>
             <a href="Profesores - Admin.html">
-                <div class="p-3 hover:bg-[#41b34c] flex items-center">
+                <div class="p-4 hover:bg-[#41b34c] flex items-center">
                     <img class="h-8 w-8"  src="img/Profesor.png" alt="icono-profesor">
                     <p class="ml-4">Profesores</p>
                 </div>
             </a>
             <a href="Sede.html">
-                <div class="p-3 hover:bg-[#41b34c] flex items-center">
+                <div class="p-4 hover:bg-[#41b34c] flex items-center">
                     <img class="h-8 w-8"  src="img/sede.png" alt="icono-sede">
                     <p class="ml-4">Sede</p>
                 </div>
             </a>
             <a href="Supervisor.html">
-                <div class="p-3 bg-[#18561E] flex items-center">
+                <div class="p-4 bg-[#18561E] flex items-center">
                     <img class="h-8 w-8"  src="img/Supervisor.png" alt="icono-supervisor">
                     <p class="ml-4">Supervisor</p>
                 </div>
             </a>
             <a href="Empresa - Admin.html">
-                <div class="p-3 hover:bg-[#41b34c] flex items-center">
+                <div class="p-4 hover:bg-[#41b34c] flex items-center">
                     <img class="h-8 w-8"  src="img/Empresa.png" alt="icono-Empresa">
                     <p class="ml-4">Empresa</p>
                 </div>
             </a>
             <a href="Departamento.html">
-                <div class="p-3 hover:bg-[#41b34c] flex items-center">
+                <div class="p-4 hover:bg-[#41b34c] flex items-center">
                     <img class="h-8 w-8"  src="img/departamento.png" alt="icono-Departamento">
                     <p class="ml-4">Departamento</p>
                 </div>
             </a>
             <a href="Carrera.html">
-                <div class="p-3 hover:bg-[#41b34c] flex items-center">
+                <div class="p-4 hover:bg-[#41b34c] flex items-center">
                     <img class="h-8 w-8"  src="img/carrera.png" alt="icono-carrera">
                     <p class="ml-4">Carrera</p>
                 </div>
             </a>
             <a href="Sustentaciones.html">
-                <div class="p-3 hover:bg-[#41b34c] flex items-center">
+                <div class="p-4 hover:bg-[#41b34c] flex items-center">
                     <img class="h-8 w-8"  src="img/sustenta.png" alt="icono-Sustentaciones">
                     <p class="ml-4">Sustentaciones</p>
                 </div>
             </a>
             <a href="Evaluacion.html">
-                <div class="p-3 hover:bg-[#41b34c] flex items-center">
+                <div class="p-4 hover:bg-[#41b34c] flex items-center">
                     <img class="h-8 w-8"  src="img/Evaluacion.png" alt="icono-evaluación">
                     <p class="ml-4">Evaluación</p>
                 </div>
             </a>
-            <a href="Practica_Profesional.html">
-                <div class="p-3 hover:bg-[#41b34c] flex items-center">
-                    <img class="h-8 w-8"  src="img/practica.png" alt="icono-proyecto-practica">
-                    <p class="ml-4">Práctica Profesional</p>
-                </div>
-            </a>
-            <a href="Usuarios.html">
-                <div class="p-3 hover:bg-[#41b34c] flex items-center">
-                    <img class="h-7 w-8" src="img/usuarios.png" alt="icono-usuarios">
-                    <p class="ml-4">Usuarios</p>
-                </div>
-            </a>
-            <a href="Administrativos.html">
-                <div class="p-3 hover:bg-[#41b34c] flex items-center">
-                    <img class="h-7 w-8" src="img/admin.png" alt="icono-administrativo">
-                    <p class="ml-4">Administrativos</p>
-                </div>
-            </a>
             <a href="#">
-                <div class="p-3 hover:bg-[#41b34c] flex items-center">
+                <div class="p-4 hover:bg-[#41b34c] flex items-center">
                     <img class="h-7 w-8" src="img/log out.png" alt="cerra sesión">
                     <p class="ml-4">Cerrar Sesión</p>
                 </div>
             </a>
         </aside>
-        <div class="w-full relative min-h-screen pointer-events-auto"> <!--Contenedor que abarca elementos como los filtros y la tabla de datos-->
-            <div class="lg:ml-60 pl-7 xl:pl-5 lg:pl-5 relative w-full xl:relative xl:w-auto lg:w-auto lg:relative mt-[6rem]">
+        <div class="w-full relative min-h-screen">
+            <div class="lg:ml-60 pl-7 xl:pl-5 lg:pl-5 relative w-full xl:relative xl:w-auto lg:w-auto lg:relative mt-[6rem] mb-8">
 
                 <h2 class="font-roboto text-[#302f2f] mb-0 text-lg xl:text-[1.7rem] lg:text-[1.6rem]">
                     Información de Supervisor
@@ -203,33 +168,31 @@
                 
                 <div class="flex flex-col lg:flex-row mt-4 bg-[#edeaea] rounded-md p-2 h-auto w-auto mr-10 justify-around">
                     <div class="flex-col">
-                        <div class="lg:mr-10 w-full">
+                        <div class="lg:mr-10 lg:w-auto w-auto">
                             <p>Nombre</p>
-                            <input type="search" placeholder="Nombre de supervisor" class="w-full lg:w-88 xl:w-96 mt-2 mb-2 h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500 text-[12px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[18px]">
+                            <input type="search" placeholder="Nombre de supervisor" class="w-full lg:w-96 xl:w-96 mt-2 mb-2 h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500">
                         </div>
                     </div>
                     <div class="flex-col">
-                        <div class="w-full lg:ml-30">
+                        <div class=" w-auto lg:w-auto lg:ml-30">
                             <p>Empresa</p>
-                            <input type="search" placeholder="Código de Empresa" class="w-full lg:w-88 xl:w-96 mt-2 mb-2 h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500 text-[12px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[18px]">
+                            <input type="search" placeholder="Código de Empresa" class="w-full lg:w-96 xl:w-96 mt-2 mb-2 h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500">
                         </div>
                     </div>
                 </div>
                 <div class="mt-8 ml-1">
-                    <button onclick="añadirRegistro()" class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-2 py-2 md:px-4 lg:px-4 xl:px-4 2xl:px-5 font-roboto text-md mb-2 md:mb-0 md:mr-4">Añadir</button>
-                    <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-2 py-2 md:px-4 lg:px-4 xl:px-4 2xl:px-5 ml-4 font-roboto text-md mb-2 md:mb-0 md:mr-4">Actualizar</button>
-                    <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-2 py-2 md:px-4 lg:px-4 xl:px-4 2xl:px-5 ml-4 font-roboto text-md">Eliminar</button>
+                    <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-4 py-2 font-roboto text-md mb-2 md:mb-0 md:mr-4">Añadir</button>
+                    <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-4 py-2 ml-4 font-roboto text-md mb-2 md:mb-0 md:mr-4">Actualizar</button>
+                    <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-4 py-2 ml-4 font-roboto text-md">Eliminar</button>
                 </div>
             </div>
-            <!-- Contenedor de la tabla y sus datos -->
-            <div class="max-h-[40vh] md:max-h-[30rem] lg:max-h-[30rem] xl:max-h-[35rem] lg:ml-64 ml-9 bg-white mt-8 rounded-md shadow-md overflow-auto mr-10 mb-8 relative contenedor_datos text-[14px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[18px]">
-                <table id="datos" class="w-full border-collapse">
+            <div class="max-h-96 lg:ml-64 ml-9 bg-white mt-8 rounded-md shadow-md overflow-auto mr-10 relative contenedor_datos">
+                <table class="w-full border-collapse">
                     <thead>
                         <th class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-                            <input type="checkbox" class="ml-3.5" id="selectAll"/>
-                            <label for="selectAll" class="p-2"></label>
+                            <input type="checkbox" class="ml-2" id="selectAll"/>
+                            <label for="selectAll" class="p-1"></label>
                         </th>
-                        <!-- Encabezados de la tabla -->
                             <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Código</th>
                             <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Nombre</th>
                             <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Apellido</th>
@@ -273,6 +236,5 @@
             <p>© 2023 - Universidad Tecnológica de Panamá</p>
         </div>
     </footer>
-    <script src="main.js"></script>
 </body>
 </html>

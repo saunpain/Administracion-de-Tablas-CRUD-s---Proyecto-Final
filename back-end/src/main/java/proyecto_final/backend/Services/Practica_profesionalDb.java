@@ -42,5 +42,18 @@ public class Practica_profesionalDb {
         }
                 return practicas;
     }
+
+    public int EliminarPractica(String cp){ //cp = Codigo Proyecto
+        int resultado = 0;
+        try{
+            Statement stmt = cn.createStatement();
+            String query = "delete from Practica_Profesional where cod_proyecto = '" + cp + "'";
+
+            return stmt.executeUpdate(query);
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
     
 }

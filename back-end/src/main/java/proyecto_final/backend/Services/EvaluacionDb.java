@@ -42,4 +42,17 @@ public class EvaluacionDb{
 
         return evaluaciones;
     }
+
+    public int EliminarEvaluacion(String f){ //f = Fecha de Evaluacion
+        int resultado = 0;
+        try{
+            Statement stmt = cn.createStatement();
+            String query = "delete from Evaluacion where fecha_evaluacion = '" + f + "'";
+
+            return stmt.executeUpdate(query);
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
 }

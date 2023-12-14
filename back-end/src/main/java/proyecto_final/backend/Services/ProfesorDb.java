@@ -17,7 +17,7 @@ public class ProfesorDb{
         this.cn = new Conexion().openDb();
     }
 
-    public List<Profesor> ObtenerTodasLosProfesores(){
+    public List<Profesor> ObtenerTodosLosProfesores(){
         List<Profesor> profesores = new ArrayList<>();
         try{
             Statement stmt = cn.createStatement();

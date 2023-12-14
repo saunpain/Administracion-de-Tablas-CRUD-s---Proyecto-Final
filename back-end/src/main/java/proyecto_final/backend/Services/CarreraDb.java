@@ -22,7 +22,7 @@ public class CarreraDb {
 
         try{
             Statement stmt = cn.createStatement();
-            String query = "SELECT * FROM Carreras";
+            String query = "SELECT * FROM Carrera";
             ResultSet rs = stmt.executeQuery(query);
 
             while(rs.next()){
@@ -41,5 +41,18 @@ public class CarreraDb {
 
         }
         return carreras;
+    }
+
+    public int EliminarCarrera(String cc){ //cc = Codigo Carrera
+        int resultado = 0;
+        try{
+            Statement stmt = cn.createStatement();
+            String query = "delete from Carrera where cod_carrera = '" + cc + "'";
+
+            return stmt.executeUpdate(query);
+        } catch (Exception e) {
+
+        }
+        return resultado;
     }
 }

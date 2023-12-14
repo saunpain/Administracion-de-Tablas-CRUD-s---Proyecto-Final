@@ -50,4 +50,17 @@ public class EstudianteDb {
         }
         return estudiantes;
     }
+
+    public int EliminarEstudiante(String cedula){ //cedula = Cedula Estudiante
+        int resultado = 0;
+        try{
+            Statement stmt = cn.createStatement();
+            String query = "delete from Estudiante where cedula = '" + cedula + "'";
+
+            return stmt.executeUpdate(query);
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
 }

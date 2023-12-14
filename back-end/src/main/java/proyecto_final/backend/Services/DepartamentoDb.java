@@ -42,4 +42,17 @@ public class DepartamentoDb {
         }
         return departamentos;
     }
+
+        public int EliminarDepartamento(String cd){ //cd = Codigo Departamento
+        int resultado = 0;
+        try{
+            Statement stmt = cn.createStatement();
+            String query = "delete from Departamento where cod_depto = '" + cd + "'";
+
+            return stmt.executeUpdate(query);
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
 }
