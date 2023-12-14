@@ -43,4 +43,17 @@ public class Proyecto_profesor_sustentaDb{
 
         return sustentaciones;
     }
+
+    public int EliminarSustentaciones(String cprof){ //cprof = Codigo Profesor
+        int resultado = 0;
+        try{
+            Statement stmt = cn.createStatement();
+            String query = "delete from Proyecto_profesor_sustenta where cod_profesor = '" + cprof + "'";
+
+            return stmt.executeUpdate(query);
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
 }

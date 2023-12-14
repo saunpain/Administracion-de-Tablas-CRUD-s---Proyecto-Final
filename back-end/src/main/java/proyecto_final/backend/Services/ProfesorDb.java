@@ -45,4 +45,17 @@ public class ProfesorDb{
 
         return profesores;
     }
+
+    public int EliminarProfesor(String cprof){ //cprof = Codigo Profesor
+        int resultado = 0;
+        try{
+            Statement stmt = cn.createStatement();
+            String query = "delete from Profesor where cod_profesor = '" + cprof + "'";
+
+            return stmt.executeUpdate(query);
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
 }

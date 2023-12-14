@@ -42,4 +42,17 @@ public class SedeDb{
 
         return sedes;
     }
+
+    public int EliminarSede(String cs){ //cs = Codigo Sede
+        int resultado = 0;
+        try{
+            Statement stmt = cn.createStatement();
+            String query = "delete from Sede where cod_sede = '" + cs + "'";
+
+            return stmt.executeUpdate(query);
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
 }

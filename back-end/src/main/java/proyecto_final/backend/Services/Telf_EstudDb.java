@@ -41,4 +41,17 @@ public class Telf_EstudDb {
         
         return telefonos;
     }
+
+    public int EliminarTelefono(String cedula){ //cedula = Cedula Estudiante
+        int resultado = 0;
+        try{
+            Statement stmt = cn.createStatement();
+            String query = "delete from Telf_Estud where cedula = '" + cedula + "'";
+
+            return stmt.executeUpdate(query);
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
 }

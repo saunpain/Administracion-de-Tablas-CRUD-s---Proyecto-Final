@@ -43,4 +43,17 @@ public class SupervisorDb {
         }
         return supervisores;
     }
+
+    public int EliminarSupervisor(String csuperv){ //csuperv = Codigo Supervisor
+        int resultado = 0;
+        try{
+            Statement stmt = cn.createStatement();
+            String query = "delete from Supervisor where cod_supervisor = '" + csuperv + "'";
+
+            return stmt.executeUpdate(query);
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
 }

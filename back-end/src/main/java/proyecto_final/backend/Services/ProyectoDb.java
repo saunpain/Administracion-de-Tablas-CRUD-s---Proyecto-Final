@@ -48,4 +48,17 @@ public class ProyectoDb {
         }
         return proyectos;
     }
+
+    public int EliminarProyecto(String cp){ //cp = Codigo Proyecto
+        int resultado = 0;
+        try{
+            Statement stmt = cn.createStatement();
+            String query = "delete from Proyecto where cod_proyecto = '" + cp + "'";
+
+            return stmt.executeUpdate(query);
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
 }
