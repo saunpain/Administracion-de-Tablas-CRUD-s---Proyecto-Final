@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profesores</title>
+    <title>Práctica Profesional</title>
     <link href="./output.css" rel="stylesheet">
 </head>
 <style>
@@ -68,14 +68,14 @@
         height: auto;
     }
     #toggleButton.closed::before {
-        content: '☰'; /* Icono para desplegar el aside */
+    content: '☰'; /* Icono para desplegar el aside */
     }
     #toggleButton.opened::before {
         content: '✕'; /* Icono para cerrar el aside */
     }
     #contenido {
-        pointer-events: auto;
-        transition: background-color 0.3s ease;
+    pointer-events: auto;
+    transition: background-color 0.3s ease;
     }
     #toggleButton.opened + #contenido{
         pointer-events: none;
@@ -83,7 +83,7 @@
     }
 </style>
 
-<body class="bg-[#F6F6F6F7] m-0 p-0 w-full h-screen" id="contenido">
+<body class="bg-[#F6F6F6F7] m-0 p-0 w-full h-screen">
     <header class="top-0 w-full bg-[#18561E] fixed z-[2]">
         <div class="flex items-center justify-between  px-4 py-2"> <!--Div que contiene los elementos del encabezado-->
             <div class="flex items-center">
@@ -105,6 +105,7 @@
             </div>
         </div>
     </header>
+    
     <div class="h-[120vh] lg:h-[126vh] xl:h-[120.4vh]"> <!--Contenedor contenido-->
         <aside id="aside" class="absolute top-[3.7rem] lg:top-20 xl:top-20 2xl:top-20 overflow-y-scroll lg:overflow-y-visible xl:overflow-y-visible h-[126%] md:h-[158.5%] lg:h-[140.6%] xl:h-[130%] w-60 bg-[#237C2C] text-[#FFFFFF] z-[1] hidden lg:block xl:Block">
             <!--Opciones del Nav-->
@@ -121,20 +122,20 @@
                 </div>
             </a>
             <a href="Profesores - Admin.html">
-                <div class="p-3 bg-[#18561E] flex items-center">
+                <div class="p-3 hover:bg-[#41b34c] flex items-center">
                     <img class="h-8 w-8"  src="img/Profesor.png" alt="icono-profesor">
                     <p class="ml-4">Profesores</p>
                 </div>
             </a>
             <a href="Sede.html">
                 <div class="p-3 hover:bg-[#41b34c] flex items-center">
-                    <img class="h-8 w-8"  src="img/sede.png" alt="icono-sede">
+                    <img class="h-8 w-8"  src="img/sede.png" alt="icono-Sede">
                     <p class="ml-4">Sede</p>
                 </div>
             </a>
             <a href="Supervisor.html">
                 <div class="p-3 hover:bg-[#41b34c] flex items-center">
-                    <img class="h-8 w-8"  src="img/Supervisor.png" alt="icono-supervisor">
+                    <img class="h-8 w-8"  src="img/Supervisor.png" alt="icono-Supervisor">
                     <p class="ml-4">Supervisor</p>
                 </div>
             </a>
@@ -169,7 +170,7 @@
                 </div>
             </a>
             <a href="Practica_Profesional.html">
-                <div class="p-3 hover:bg-[#41b34c] flex items-center">
+                <div class="p-3 bg-[#18561E] flex items-center">
                     <img class="h-8 w-8"  src="img/practica.png" alt="icono-proyecto-practica">
                     <p class="ml-4">Práctica Profesional</p>
                 </div>
@@ -197,53 +198,22 @@
         <div class="w-full relative min-h-screen pointer-events-auto"> <!--Contenedor que abarca elementos como los filtros y la tabla de datos-->
             <div class="lg:ml-60 pl-7 xl:pl-5 lg:pl-5 relative w-full xl:relative xl:w-auto lg:w-auto lg:relative mt-[6rem]">
                 <h2 class="font-roboto text-[#302f2f] mb-0 text-lg xl:text-[1.7rem] lg:text-[1.6rem]">
-                    Información de Profesores
+                    Información de Prácticas Profesionales
                 </h2>
-                
                 <div class="flex flex-col lg:flex-row mt-4 bg-[#edeaea] rounded-md p-2 h-auto w-auto mr-10 justify-around">
                     <div class="flex-col">
                         <div class="lg:mr-10 w-full">
-                            <p>Nombre</p>
-                            <input type="search" placeholder="Ingrese un nombre" class="w-full lg:w-88 xl:96 mt-2 mb-2 h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500 text-[12px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[18px]">
-                        </div>
-                        <div class="mt-4 lg:mt-0 w-auto">
-                            <p>Departamento</p>
-                            <select class="w-full lg:w-auto  xl:w-auto  h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500 text-[12px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px]">
-                                <option disabled selected>Seleccione un Departamento</option>
-                                <option>Arquitectura y Redes de Computadoras</option>
-                                <option>Computación y Simulación de Sistemas</option>
-                                <option>Ingeniería de Software</option>
-                                <option>Programación de Computadoras</option>
-                                <option>Sistemas de Información, Control y Evaluación de R. I.</option>
-                            </select>
+                            <p>Codigo de Proyecto</p>
+                            <input type="search" placeholder="Código de proyecto" class="w-full lg:w-88 xl:w-96 mt-2 mb-2 h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500 text-[12px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[18px]">
                         </div>
                     </div>
                     <div class="flex-col">
-                        <div class="mt-2 w-full lg:w-auto">
-                            <p>Tipo</p>
-                            <select class="w-full lg:w-full  xl:w-full  h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500 text-[12px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px]">
-                                <option disabled selected>Tipo de profesor</option>
-                                <option value="">Tiempo parcial</option>
-                                <option value="">Tiempo completo</option>
-                            </select>
-                        </div>
-                        <div class="mt-2 w-full">
-                            <p>Sede</p>
-                            <select class="w-full mb-2 xl:w-96 lg:w-88  h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500 text-[12px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px]">
-                                <option disabled selected>Seleccione una sede</option>
-                                <option>Panamá</option>
-                                <option>Colón</option>
-                                <option>Panamá Oeste</option>
-                                <option>Coclé</option>
-                                <option>Azuero</option>
-                                <option>Veraguas</option>
-                                <option>Chiriquí</option>
-                                <option>Bocas del Toro Centro</option>
-                            </select>
+                        <div class=" w-full lg:ml-30">
+                            <p>Código de Supervisor</p>
+                            <input type="search" placeholder="Código de supervisor" class="w-full lg:w-88 xl:w-96 mt-2 mb-2 h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500 text-[12px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[18px]">
                         </div>
                     </div>
                 </div>
-            
                 <div class="mt-8 ml-1">
                     <button onclick="añadirRegistro()" class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-2 py-2 md:px-4 lg:px-4 xl:px-4 2xl:px-5 font-roboto text-md mb-2 md:mb-0 md:mr-4">Añadir</button>
                     <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-2 py-2 md:px-4 lg:px-4 xl:px-4 2xl:px-5 ml-4 font-roboto text-md mb-2 md:mb-0 md:mr-4">Actualizar</button>
@@ -251,7 +221,7 @@
                 </div>
             </div>
             <!-- Contenedor de la tabla y sus datos -->
-            <div class="max-h-[40vh] md:max-h-[40rem] lg:max-h-[25rem] xl:max-h-[32rem] lg:ml-64 ml-9 bg-white mt-8 rounded-md shadow-md overflow-auto mr-10 mb-8 relative contenedor_datos text-[14px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[18px]">
+            <div class="max-h-[40vh] md:max-h-[30rem] lg:max-h-[30rem] xl:max-h-[35rem] lg:ml-64 ml-9 bg-white mt-8 rounded-md shadow-md overflow-auto mr-10 mb-8 relative contenedor_datos text-[14px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[18px]">
                 <table id="datos" class="w-full border-collapse">
                     <thead>
                         <tr class="bg-white">
@@ -262,16 +232,9 @@
                             <!-- Encabezados de la tabla -->
                             <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Código</th>
                             <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Nombre</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Apellido</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Tipo</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Departamento</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Usuario</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Teléfono</th>
-                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Correo</th>
                         </tr>
                     </thead>
                 </table>
-                
             </div>
         </div>
     </div>
