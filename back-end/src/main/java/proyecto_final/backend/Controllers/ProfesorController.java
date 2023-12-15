@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import proyecto_final.backend.Models.Profesor;
@@ -16,6 +17,15 @@ public class ProfesorController {
     @GetMapping("/profesor/all")
     List<Profesor> TodasLosProfesores(){
         return new ProfesorDb().ObtenerTodosLosProfesores();
+    }
+
+    @GetMapping("/profesor/filtrar")
+    public List<Profesor> FiltrarProfesores(
+            @RequestParam(required = false) String nombre,
+            @RequestParam(required = false) String departamento,
+            @RequestParam(required = false) String tipo,
+            @RequestParam(required = false) String sede) {
+        return new ProfesorDb().FiltrarProfesores(nombre, departamento, tipo, sede);
     }
 
     @DeleteMapping("/profesor/{codigoProfesor}")

@@ -3,11 +3,23 @@ let profesores = []
 
 function ObtenerProfesores(){
     fetch(baseUrl + "/profesor/all").then( res => {
-        console.log("fetch exitoso")
         res.json().then(json => {
             profesores = json
-            console.log("profesores convertidos en json")
-            console.log(profesores)
+        })
+    })
+}
+
+function FiltrarProfesores() {
+    let nombre = document.getElementById("inputNombre").value
+    let departamento = document.getElementById("selectDepartamento").value
+    let tipo = document.getElementById("selectTipo").value
+    let sede = document.getElementById("selectSede").value
+
+    let url = `/profesor/filtrar?nombre=${nombre}&departamento=${departamento}&tipo=${tipo}&sede=${sede}`
+
+    fetch(baseUrl + url).then(res => {
+        res.json().then(json =>{
+            profesores = json
             ImprimirProfesores()
         })
     })

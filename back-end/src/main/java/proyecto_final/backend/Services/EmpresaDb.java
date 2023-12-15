@@ -42,6 +42,39 @@ public class EmpresaDb {
         return empresas;
     }
 
+    public int GuardarEmpresa(Empresa empresa) {
+        int resultado = 0;
+        try{
+            Statement stmt = cn.createStatement();
+            String query = " "; //proceso almacenado para guardar empresas
+
+            resultado = stmt.executeUpdate(query);
+
+            stmt.close();
+            return resultado;
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
+
+    public int ActualizarEmpresa(Empresa empresa) {
+        int resultado = 0;
+
+        try{
+            Statement stmt = cn.createStatement();
+            String query = " ";
+
+            resultado = stmt.executeUpdate(query);
+
+            stmt.close();
+            return resultado;
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
+
     public int EliminarEmpresa(String ce){ //ce = Codigo Empresa
         int resultado = 0;
         try{
