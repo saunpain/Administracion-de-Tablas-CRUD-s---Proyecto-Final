@@ -51,6 +51,39 @@ public class EstudianteDb {
         return estudiantes;
     }
 
+    public List<Estudiante> FiltrarEstudiantes(String nombre, String carrera, String identificacion, String anio){
+        List<Estudiante> estudiantes = new ArrayList<>();
+
+        try{
+            Statement stmt = cn.createStatement();
+            String query = " ";
+            ResultSet rs = stmt.executeQuery(query);
+
+            while(rs.next()){
+                Estudiante estudiante = new Estudiante(
+                    rs.getString("cedula"),
+                    rs.getString("pri_nom"),
+                    rs.getString("seg_nom"),
+                    rs.getString("pri_apellido"),
+                    rs.getString("seg_apellido"),
+                    rs.getInt("año_cursa"),
+                    rs.getString("semestre"),
+                    rs.getFloat("indice"),
+                    rs.getString("cod_proyecto"),
+                    rs.getString("cod_carrera"),
+                    rs.getString("cod_sede")
+                );
+
+                estudiantes.add(estudiante);
+            }
+            stmt.close();
+            rs.close();
+        } catch (Exception e){
+
+        }
+        return estudiantes;
+    }
+
     public int EliminarEstudiante(String cedula){ //cedula = Cedula Estudiante
         int resultado = 0;
         try{

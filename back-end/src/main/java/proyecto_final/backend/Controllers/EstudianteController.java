@@ -15,6 +15,16 @@ public class EstudianteController {
         return new EstudianteDb().ObtenerTodosLosEstudiantes();
     }
 
+    @GetMapping("/estudiante/filtrar")
+    public List<Estudiante> FiltrarEstudiantes(
+        @RequestParam(required = false) String nombre,
+        @RequestParam(required = false) String carrera,
+        @RequestParam(required = false) String identificacion,
+        @RequestParam(required = false) String anio
+    ) {
+        return new EstudianteDb().FiltrarEstudiantes(nombre, carrera, identificacion, anio);
+    }
+
     @DeleteMapping("/estudiante/{cedula}")
     public int Delete(@PathVariable("cedula") String cedula){
         return new EstudianteDb().EliminarEstudiante(cedula);
