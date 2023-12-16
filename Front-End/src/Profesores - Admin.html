@@ -170,12 +170,12 @@
                     <div class="flex-col">
                         <div class="lg:mr-10 w-full">
                             <p>Nombre</p>
-                            <input type="text" placeholder="Ingrese un nombre" id="inputNombre" class="w-full lg:w-88 xl:96 mt-2 mb-2 h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500">
+                            <input type="text" onkeypress="FiltrarProfesores()" placeholder="Ingrese un nombre" id="inputNombre" class="w-full lg:w-88 xl:96 mt-2 mb-2 h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500">
                         </div>
                         <div class="mt-4 lg:mt-0 w-auto">
                             <p>Departamento</p>
-                            <select id="selectDepartamento" class="w-full lg:w-auto  xl:w-auto  h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500">
-                                <option disabled selected>Seleccione un Departamento</option>
+                            <select id="selectDepartamento" onchange="FiltrarProfesores()" class="w-full lg:w-auto  xl:w-auto  h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500">
+                                <option>Seleccione un Departamento</option>
                                 <option>Arquitectura y Redes de Computadoras</option>
                                 <option>Computación y Simulación de Sistemas</option>
                                 <option>Ingeniería de Software</option>
@@ -187,16 +187,16 @@
                     <div class="flex-col">
                         <div class="mt-2 w-full lg:w-auto">
                             <p>Tipo</p>
-                            <select id="selectTipo" class="w-full lg:w-full  xl:w-full  h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500">
-                                <option disabled selected>Tipo de profesor</option>
-                                <option value="">Tiempo parcial</option>
-                                <option value="">Tiempo completo</option>
+                            <select id="selectTipo" onchange="FiltrarProfesores()" class="w-full lg:w-full  xl:w-full  h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500">
+                                <option>Tipo de profesor</option>
+                                <option>Tiempo parcial</option>
+                                <option>Tiempo completo</option>
                             </select>
                         </div>
                         <div class="mt-2 w-full">
                             <p>Sede</p>
                             <select id="selectSede" class="w-full mb-2 xl:w-96 lg:w-88  h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500">
-                                <option disabled selected>Seleccione una sede</option>
+                                <option>Seleccione una sede</option>
                                 <option>Panamá</option>
                                 <option>Colón</option>
                                 <option>Panamá Oeste</option>
@@ -271,6 +271,6 @@
             <p>© 2023 - Universidad Tecnológica de Panamá</p>
         </div>
     </footer>
-    <script src="Profesor.js"></script>
+    <script src="js/Profesor.js"></script>
 </body>
 </html>

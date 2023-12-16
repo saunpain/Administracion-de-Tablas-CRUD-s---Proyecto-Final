@@ -51,14 +51,13 @@ public class EstudianteDb {
         return estudiantes;
     }
 
-    public List<Estudiante> FiltrarEstudiantes(String nombre, String carrera, String identificacion, String anio){
+    public List<Estudiante> FiltrarEstudiantes(String nombre, String identificacion, String carrera, String anio){
         List<Estudiante> estudiantes = new ArrayList<>();
-
         try{
             Statement stmt = cn.createStatement();
-            String query = " ";
+            String query = "exec FiltrarEstudiantes " + nombre + ", " + identificacion + ", " + carrera + ", " + anio;
             ResultSet rs = stmt.executeQuery(query);
-
+            
             while(rs.next()){
                 Estudiante estudiante = new Estudiante(
                     rs.getString("cedula"),
@@ -73,18 +72,21 @@ public class EstudianteDb {
                     rs.getString("cod_carrera"),
                     rs.getString("cod_sede")
                 );
-
+                
                 estudiantes.add(estudiante);
             }
+
             stmt.close();
             rs.close();
-        } catch (Exception e){
 
+        }catch(Exception e){
+            
         }
+
         return estudiantes;
     }
 
-    public int EliminarEstudiante(String cedula){ //cedula = Cedula Estudiante
+    public int EliminarEstudiante(String cedula){
         int resultado = 0;
         try{
             Statement stmt = cn.createStatement();

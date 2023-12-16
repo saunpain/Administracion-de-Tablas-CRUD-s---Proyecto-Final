@@ -49,8 +49,16 @@ public class ProfesorDb{
         List<Profesor> profesores = new ArrayList<>();
         try{
             Statement stmt = cn.createStatement();
-            String query = " "; //Query para filtro con metodo WHERE
-            ResultSet rs = stmt.executeQuery(query);
+            String query = "exec FiltrarProfesores " + nombre + ", " + departamento + ", " + tipo;
+            String queryNoNull = "exec FiltrarProfesores " + nombre + ", " + departamento + ", " + "'" + tipo + "'";
+            ResultSet rs;
+
+            if("null".equals(tipo)){
+                rs = stmt.executeQuery(query);
+            }
+            else{
+                rs = stmt.executeQuery(queryNoNull);
+            }
             
             while(rs.next()){
                 Profesor profesor = new Profesor(

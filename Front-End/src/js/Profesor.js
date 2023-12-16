@@ -1,39 +1,83 @@
 let baseUrl = "http://localhost:8080"
 let profesores = []
+let estudiantesFiltro = []
 
 function ObtenerProfesores(){
     fetch(baseUrl + "/profesor/all").then( res => {
         res.json().then(json => {
             profesores = json
+            ImprimirProfesores(profesores)
         })
     })
 }
 
 function FiltrarProfesores() {
-    let nombre = document.getElementById("inputNombre").value
+    let nombre = document.getElementById("inputNombre").value.trim() || null
     let departamento = document.getElementById("selectDepartamento").value
     let tipo = document.getElementById("selectTipo").value
+    console.log(tipo)
     let sede = document.getElementById("selectSede").value
 
-    let url = `/profesor/filtrar?nombre=${nombre}&departamento=${departamento}&tipo=${tipo}&sede=${sede}`
+    switch (departamento) {
+        case "Arquitectura y Redes de Computadoras":
+            departamento = "darc"
+            break
+        case "Computación y Simulación de Sistemas":
+            departamento = "dcss"
+            break
+        case "Ingeniería de Software":
+            departamento = "dis"
+            break
+        case "Programación de Computadoras":
+            departamento = "dpc"
+            break
+        case "Sistemas de Información, Control y Evaluación de Recursos Informáticos":
+            departamento = "siceri"
+            break
+        default:
+            departamento = null
+            break
+    }
 
-    fetch(baseUrl + url).then(res => {
+    switch(tipo) {
+        case "Tiempo parcial":
+            tipo = "Tiempo Parcial"
+            tipo = encodeURIComponent(tipo);
+            break
+        case "Tiempo completo":
+            tipo = "Tiempo Completo"
+            tipo = encodeURIComponent(tipo);
+            break
+        default:
+            tipo = null
+            break
+    }
+
+    sede = null;
+
+    console.log(nombre)
+    console.log(departamento)
+    console.log(tipo)
+    console.log(sede)
+
+    fetch(baseUrl + `/profesor/filtrar?nombre=${nombre}&departamento=${departamento}&tipo=${tipo}&sede=${sede}`).then(res => {
         res.json().then(json =>{
-            profesores = json
-            ImprimirProfesores()
+            estudiantesFiltro = json
+            console.log(estudiantesFiltro)
+            ImprimirProfesores(estudiantesFiltro)
         })
-    })
+    }).catch(error => {
+        console.error("Error en la solicitud:", error);
+    });
+    
 }
 
-function ImprimirProfesores(){
+function ImprimirProfesores(profesores){
     let contenedor = document.getElementById("cuerpo-tabla")
-    console.log("contenedor obtenido")
     contenedor.innerHTML = ""
 
     profesores.forEach(p => {
         contenedor.innerHTML += MapearProfesor(p)
-        console.log("profesor mapeado")
-        console.log(p.cod_profesor)
     })
 
     let selectAllCheckbox = document.getElementById("selectAll")

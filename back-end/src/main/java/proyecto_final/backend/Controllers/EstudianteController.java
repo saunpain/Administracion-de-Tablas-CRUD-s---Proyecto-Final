@@ -17,12 +17,11 @@ public class EstudianteController {
 
     @GetMapping("/estudiante/filtrar")
     public List<Estudiante> FiltrarEstudiantes(
-        @RequestParam(required = false) String nombre,
-        @RequestParam(required = false) String carrera,
-        @RequestParam(required = false) String identificacion,
-        @RequestParam(required = false) String anio
-    ) {
-        return new EstudianteDb().FiltrarEstudiantes(nombre, carrera, identificacion, anio);
+            @RequestParam(required = false) String nombre,
+            @RequestParam(required = false) String identificacion,
+            @RequestParam(required = false) String carrera,
+            @RequestParam(required = false) String anio) {
+        return new EstudianteDb().FiltrarEstudiantes(nombre, identificacion, carrera, anio);
     }
 
     @DeleteMapping("/estudiante/{cedula}")

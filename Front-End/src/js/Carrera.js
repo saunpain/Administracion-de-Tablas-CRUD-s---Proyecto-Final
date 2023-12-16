@@ -1,10 +1,10 @@
 let baseUrl = "http://localhost:8080"
-let carreras = []
+let estudiantes = []
 
 function ObtenerCarreras(){
     fetch(baseUrl + "/carreras/all").then( res => {
         res.json().then(json => {
-            carreras = json
+            estudiantes = json
             ImprimirCarreras()
         })
     })
@@ -14,8 +14,8 @@ function ImprimirCarreras(){
     let contenedor = document.getElementById("cuerpo-tabla")
     contenedor.innerHTML = ""
 
-    carreras.forEach(c => {
-        contenedor.innerHTML += MapearCarrera(c)
+    estudiantes.forEach(c => {
+        contenedor.innerHTML += MapearCarreras(c)
     })
 
     let selectAllCheckbox = document.getElementById("selectAll")
@@ -28,7 +28,7 @@ function ImprimirCarreras(){
     });
 }
 
-function MapearCarrera(c) {
+function MapearCarreras(c) {
     return `<tr>
     <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
         <input type="checkbox" id="${c.cod_carrera}" class="ml-2"/>
@@ -40,9 +40,6 @@ function MapearCarrera(c) {
   </tr>`
 }
 
-
-
-/* Función para añadir celdas a las tablas */
 function añadirRegistro() {
     var tabla = document.getElementById("cuerpo-tabla");
 

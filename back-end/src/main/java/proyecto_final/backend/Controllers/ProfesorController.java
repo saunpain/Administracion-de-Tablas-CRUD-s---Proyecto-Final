@@ -1,5 +1,7 @@
 package proyecto_final.backend.Controllers;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +27,12 @@ public class ProfesorController {
             @RequestParam(required = false) String departamento,
             @RequestParam(required = false) String tipo,
             @RequestParam(required = false) String sede) {
+
+            try {
+                tipo = URLDecoder.decode(tipo, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                
+            }
         return new ProfesorDb().FiltrarProfesores(nombre, departamento, tipo, sede);
     }
 
