@@ -32,7 +32,8 @@ public class AdministrativoDb {
                     rs.getString("apellido_admin"),
                     rs.getString("telefono_admin"),
                     rs.getString("correo_admin"),
-                    rs.getInt("Usuario")
+                    rs.getInt("Usuario"),
+                    rs.getString("Cedula_administrativo")
                 );
 
                 administrativos.add(administrativo);

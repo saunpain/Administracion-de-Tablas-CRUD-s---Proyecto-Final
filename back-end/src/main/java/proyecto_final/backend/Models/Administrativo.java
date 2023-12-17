@@ -7,17 +7,20 @@ public class Administrativo {
     private String telefono_admin;
     private String correo_admin;
     private int usuario;
+    private String Cedula_administrativo;
 
     public Administrativo(){
     }
 
-    public Administrativo(int Cod_admin, String Nombre_admin, String Apellido_admin, String Telefono_admin, String Correo_admin, int Usuario){
+    public Administrativo(int Cod_admin, String Nombre_admin, String Apellido_admin,
+    String Telefono_admin, String Correo_admin, int Usuario, String cedula_administrativo){
         cod_admin = Cod_admin;
         nombre_admin = Nombre_admin;
         apellido_admin = Apellido_admin;
         telefono_admin = Telefono_admin;
         correo_admin = Correo_admin;
         usuario = Usuario;
+        Cedula_administrativo = cedula_administrativo;
     }
 
     public int getCod_admin() {
@@ -66,6 +69,14 @@ public class Administrativo {
 
     public void setUsuario(int usuario) {
         this.usuario = usuario;
+    }
+
+    public String getCedula_administrativo() {
+        return Cedula_administrativo;
+    }
+
+    public void setCedula_administrativo(String cedula_administrativo) {
+        Cedula_administrativo = cedula_administrativo;
     }
 
 

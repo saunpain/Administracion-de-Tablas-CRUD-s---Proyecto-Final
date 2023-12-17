@@ -6,17 +6,26 @@ public class Profesor {
     private String apellido_prof;
     private String tipo_prof;
     private String cod_depto;
+    private int usuario;
+    private String telefono_profesor;
+    private String correo_profesor;
+    private String Cedula_profesor;
 
     public Profesor(){
     }
 
     public Profesor(int Cod_profesor, String Nombre_prof, String Apellido_prof,
-    String Tipo_prof, String Cod_depto){
+    String Tipo_prof, String Cod_depto, int Usuario, String Telefono_profesor, 
+    String Correo_profesor, String cedula_profesor){
         cod_profesor = Cod_profesor;
         nombre_prof = Nombre_prof;
         apellido_prof = Apellido_prof;
         tipo_prof = Tipo_prof;
         cod_depto = Cod_depto;
+        usuario = Usuario;
+        telefono_profesor = Telefono_profesor;
+        correo_profesor = Correo_profesor;
+        Cedula_profesor = cedula_profesor;
     }
 
     public int getCod_profesor() {
@@ -59,4 +68,35 @@ public class Profesor {
         this.cod_depto = cod_depto;
     }
 
+    public int getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(int usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getTelefono_profesor() {
+        return telefono_profesor;
+    }
+
+    public void setTelefono_profesor(String telefono_profesor) {
+        this.telefono_profesor = telefono_profesor;
+    }
+
+    public String getCorreo_profesor() {
+        return correo_profesor;
+    }
+
+    public void setCorreo_profesor(String correo_profesor) {
+        this.correo_profesor = correo_profesor;
+    }
+
+    public String getCedula_profesor() {
+        return Cedula_profesor;
+    }
+
+    public void setCedula_profesor(String cedula_profesor) {
+        Cedula_profesor = cedula_profesor;
+    }
 }

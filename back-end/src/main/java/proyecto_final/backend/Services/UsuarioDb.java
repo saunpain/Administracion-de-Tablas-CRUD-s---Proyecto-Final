@@ -31,7 +31,10 @@ public class UsuarioDb {
                     rs.getString("usuario"),
                     rs.getString("contrasena"),
                     rs.getString("creado"),
-                    rs.getInt("cod_tipo")
+                    rs.getInt("cod_tipo"),
+                    rs.getString("Cedula_profesor"),
+                    rs.getString("Cedula_administrativo"),
+                    rs.getString("Cedula_estudiante")
                 );
 
                 usuarios.add(usuario);

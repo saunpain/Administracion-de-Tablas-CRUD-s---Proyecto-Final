@@ -1,12 +1,12 @@
 let baseUrl = "http://localhost:8080"
-let profesores = []
+let proyectos = []
 let estudiantesFiltro = []
 
 function ObtenerProfesores(){
     fetch(baseUrl + "/profesor/all").then( res => {
         res.json().then(json => {
-            profesores = json
-            ImprimirProfesores(profesores)
+            proyectos = json
+            ImprimirProfesores(proyectos)
         })
     })
 }
@@ -101,5 +101,9 @@ function MapearProfesor(p) {
     <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${p.apellido_prof}</td>
     <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${p.tipo_prof}</td>
     <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${p.cod_depto}</td>
+    <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${p.usuario}</td>
+    <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${p.telefono_profesor}</td>
+    <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${p.correo_profesor}</td>
+    <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${p.cedula_profesor}</td>
 </tr>`
 }

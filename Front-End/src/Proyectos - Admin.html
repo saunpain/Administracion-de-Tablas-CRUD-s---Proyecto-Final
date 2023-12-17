@@ -68,7 +68,7 @@
     }
 </style>
 
-<body class="bg-[#F6F6F6F7] m-0 p-0 w-full h-full min-h-screen">
+<body class="bg-[#F6F6F6F7] m-0 p-0 w-full h-full min-h-screen" onload="ObtenerProyectos()">
     <header class="top-0 w-full bg-[#18561E] fixed z-[2]">
         <div class="flex items-center justify-between  px-4 py-2">
             <div class="flex items-center">
@@ -229,6 +229,9 @@
                         </tr>
                         
                     </thead>
+                    <tbody id="cuerpo-tabla">
+
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -266,5 +269,6 @@
             <p>© 2023 - Universidad Tecnológica de Panamá</p>
         </div>
     </footer>
+    <script src="js/Proyectos.js"></script>
 </body>
 </html>
