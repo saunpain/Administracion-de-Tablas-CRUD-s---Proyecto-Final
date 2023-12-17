@@ -31,7 +31,6 @@ public class ProfesorDb{
                     rs.getString("apellido_prof"),
                     rs.getString("tipo_prof"),
                     rs.getString("cod_depto"),
-                    rs.getInt("usuario"),
                     rs.getString("telefono_profesor"),
                     rs.getString("correo_profesor"),
                     rs.getString("Cedula_profesor")
@@ -71,7 +70,6 @@ public class ProfesorDb{
                     rs.getString("apellido_prof"),
                     rs.getString("tipo_prof"),
                     rs.getString("cod_depto"),
-                    rs.getInt("usuario"),
                     rs.getString("telefono_profesor"),
                     rs.getString("correo_profesor"),
                     rs.getString("Cedula_profesor")

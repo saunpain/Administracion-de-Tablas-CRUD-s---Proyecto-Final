@@ -38,8 +38,8 @@ function MapearDepartamento(d) {
     return `
     <tr>
     <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-        <input type="checkbox" class="ml-2"/>
-        <label for="selectAll" class="p-1"></label>
+        <input type="checkbox" id="${d.cod_depto}" class="ml-2"/>
+        <label for="${d.cod_depto}" class="p-1"></label>
     </td>
     <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${d.cod_depto}</td>
     <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${d.nombre_departamento}</td>

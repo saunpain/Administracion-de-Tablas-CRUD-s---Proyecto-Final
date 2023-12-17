@@ -6,17 +6,17 @@ function ObtenerProyectos(){
     fetch(baseUrl + "/proyecto/all").then( res => {
         res.json().then(json => {
             proyectos = json
-            ImprimirProfesores(proyectos)
+            ImprimirProyectos(proyectos)
         })
     })
 }
 
-function ImprimirProfesores(proyectos){
+function ImprimirProyectos(proyectos){
     let contenedor = document.getElementById("cuerpo-tabla")
     contenedor.innerHTML = ""
 
     proyectos.forEach(p => {
-        contenedor.innerHTML += MapearProfesor(p)
+        contenedor.innerHTML += MapearProyecto(p)
     })
 
     let selectAllCheckbox = document.getElementById("selectAll")
@@ -29,11 +29,11 @@ function ImprimirProfesores(proyectos){
     });
 }
 
-function MapearProfesor(p) {
+function MapearProyecto(p) {
     return `<tr>
     <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-        <input type="checkbox" class="ml-2"/>
-        <label for="selectAll" class="p-1"></label>
+        <input id="${p.cod_proyecto}" type="checkbox" class="ml-2"/>
+        <label for="${p.cod_proyecto}" class="p-1"></label>
     </td>
     <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${p.cod_proyecto}</td>
     <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${p.tipo_proyecto}</td>
