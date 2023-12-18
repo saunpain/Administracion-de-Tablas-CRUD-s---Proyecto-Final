@@ -76,7 +76,7 @@
     }
 </style>
 
-<body class="bg-[#F6F6F6F7] m-0 p-0 w-full h-screen">
+<body class="bg-[#F6F6F6F7] m-0 p-0 w-full h-full box-border">
     <header class="top-0 w-full bg-[#18561E] fixed z-[2]">
         <div class="flex items-center justify-between  px-4 py-2"> <!--Div que contiene los elementos del encabezado-->
             <div class="flex items-center">
@@ -86,10 +86,6 @@
             </div>
             <div class="text-[#FFFFFF]">
                 <ul class="flex items-center">
-                    <li class="ml-4 mr-4">
-                        <img class="lg:h-10 lg:w-15 w-10 h-7 hidden lg:block xl:block" src="img/Notificacion.png" alt="Notificación Icon">
-                        <a href="#"></a>
-                    </li>
                     <p class="text-[15] lg:text-[22px]">Admin</p>
                     <li class="hover:bg-[#237C2C] p-2 space-x-1">
                         <img class="lg:h-10 lg:w-15 w-10 h-7" src="img/icon-user.png" alt="Usuario Icon">
@@ -99,8 +95,8 @@
         </div>
     </header>
     
-    <div class="h-[120vh] lg:h-[126vh] xl:h-[120.4vh]"> <!--Contenedor contenido-->
-        <aside id="aside" class="absolute top-[3.7rem] lg:top-20 xl:top-20 2xl:top-20 overflow-y-scroll lg:overflow-y-visible xl:overflow-y-visible h-[126%] md:h-[158.5%] lg:h-[140.6%] xl:h-[130%] w-60 bg-[#237C2C] text-[#FFFFFF] z-[1] hidden lg:block xl:Block">
+    <div class="flex min-h-screen min-w-screen"> <!--Contenedor contenido-->
+        <aside id="aside" class="absolute w-[15rem] lg:relative xl:relative top-[3.7rem] lg:top-20 xl:top-20 2xl:top-20 h-[126%] md:h-[135%] lg:h-auto xl:h-auto bg-[#237C2C] text-[#FFFFFF] z-[1] hidden lg:block xl:Block">
             <!--Opciones del Nav-->
             <a href="Estudiantes- Admin.html">
                 <div class="p-3 hover:bg-[#41b34c] flex items-center">
@@ -188,8 +184,8 @@
             </a>
         </aside>
         
-        <div class="w-full relative min-h-screen pointer-events-auto"> <!--Contenedor que abarca elementos como los filtros y la tabla de datos-->
-            <div class="lg:ml-60  pl-7 xl:pl-5 lg:pl-5 relative w-full xl:relative xl:w-auto lg:w-auto lg:relative mt-[6rem]"> <!--Contendor de los filtros y botones de acciones-->
+        <div class="w-full xl:w-[80%] xl:ml-5 2xl:w-[84%] lg:w-[78%] pointer-events-auto relative"> <!--Contenedor que abarca elementos como los filtros y la tabla de datos-->
+            <div class="pl-7 xl:pl-5 lg:pl-5 w-full mt-[6rem]"> <!--Contendor de los filtros y botones de acciones-->
                 <h2 class="font-roboto text-[#302f2f] mb-0 text-lg xl:text-[1.7rem] lg:text-[1.6rem]">
                     Información de Usuarios
                 </h2>
@@ -203,7 +199,7 @@
                     <div class="flex-col">
                         <div class="w-full lg:ml-30">
                             <p>Codigo de Usuario</p>
-                            <select class="w-full lg:w-88 xl:w-96 h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500 text-[12px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px]">
+                            <select class="w-full lg:w-88 xl:w-96 mt-2 h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500 text-[12px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px]">
                                 <option disabled selected class="">Seleccione Usuario</option>
                                 <option>1 - Administrativo</option>
                                 <option>2 - Docente</option>
@@ -219,8 +215,8 @@
                 </div>
             </div>
             <!-- Contenedor de la tabla y sus datos -->
-            <div class="max-h-[40vh] md:max-h-[30rem] lg:max-h-[30rem] xl:max-h-[35rem] lg:ml-64 ml-9 bg-white mt-8 rounded-md shadow-md overflow-auto mr-10 mb-8 relative contenedor_datos text-[14px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[18px]">
-                <table id="datos" class="w-full border-collapse">
+            <div class="max-h-[40vh] min-h-[24rem] md:max-h-[24rem] lg:max-h-[32rem] lg:min-h-[30rem] xl:max-h-[34rem] xl:min-h-[30rem] ml-6 bg-white mt-8 rounded-md shadow-md overflow-auto mr-10 mb-8 contenedor_datos text-[14px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[18px]">
+                <table id="añadir_datos" class="w-full border-collapse">
                     <thead>
                         <tr class="bg-white">
                             <th class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
@@ -231,13 +227,17 @@
                             <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Código</th>
                             <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Nombre de usuario</th>
                             <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Fecha de creación</th>
+                            <th class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Cédula</th>
                         </tr>
                     </thead>
+                    <tbody id="cuerpo-tabla">
+                        
+                    </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <footer class="relative z-10 bg-[#444444] text-white py-5 w-full xl:w-full">
+    <footer class="relative z-[2] bg-[#444444] text-white py-5 w-full">
         <div class="flex flex-col lg:flex-row lg:justify-around items-center justify-center">
             <img src="https://github.com/saunpain/Proyecto1_DS4/blob/main/img/Logo%20UTP%20Blanco.png?raw=true" alt="logo de la UTP" class="h-15 w-11 lg:w-[4.2rem]">
             <div class="text-white text-center mt-3 justify-center lg:text-left xl:text-left lg: block">
@@ -269,6 +269,6 @@
             <p>© 2023 - Universidad Tecnológica de Panamá</p>
         </div>
     </footer>
-    <script src="main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

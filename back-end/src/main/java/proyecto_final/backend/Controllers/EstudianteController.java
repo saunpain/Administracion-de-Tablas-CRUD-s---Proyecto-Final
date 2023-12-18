@@ -24,6 +24,11 @@ public class EstudianteController {
         return new EstudianteDb().FiltrarEstudiantes(nombre, identificacion, carrera, anio);
     }
 
+    @PostMapping("/estudiante")
+    public int InsertarEstudiante(@RequestBody Estudiante estudiante) {
+        return new EstudianteDb().GuardarEstudiante(estudiante);
+    }
+
     @DeleteMapping("/estudiante/{cedula}")
     public int Delete(@PathVariable("cedula") String cedula){
         return new EstudianteDb().EliminarEstudiante(cedula);
