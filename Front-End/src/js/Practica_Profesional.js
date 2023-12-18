@@ -68,7 +68,7 @@ function añadirRegistro() {
 
     for (var i = 0; i < tabla.rows[0].cells.length; i++) {
         var nueva = nuevaCelda.insertCell(i);
-
+          GuardarPractica_Profecional()
         if (i === 0) {
             var btnEnviar = document.createElement('button');
             var iconEnviar = document.createElement('img');
@@ -82,7 +82,9 @@ function añadirRegistro() {
             iconEliminar.className = "w-[21px] h-[19px] ml-[5px] mt-[4px]";
 
             btnEnviar.appendChild(iconEnviar);
-            btnEnviar.addEventListener('click', function () {});
+            btnEnviar.addEventListener('click', function () {
+              GuardarPractica()
+            });
             
             btnEliminar.appendChild(iconEliminar);
             btnEliminar.addEventListener('click', function () {
@@ -138,7 +140,7 @@ function hacerEditable() {
             // Guarda el valor original de la celda
             cell.setAttribute('data-original-value', currentValue);
   
-           
+          
             var input = document.createElement('input');
             input.type = 'text';
             input.value = currentValue;
@@ -157,12 +159,12 @@ function hacerEditable() {
           var btnEnviar = document.createElement('button');
           var iconEnviar = document.createElement('img');
           iconEnviar.src = 'img/añadir.png';
-          iconEnviar.className = "bg-green-300 w-[20px] h-[18px] ml-[2px] mt-[2px]";
+          iconEnviar.className = "bg-green-300 w-[18px] h-[18px] mt-[2px]";
   
           var btnDeshacer = document.createElement('button');
           var iconDeshacer = document.createElement('img');
-          iconDeshacer.src = 'img/cancelar.png'; 
-          iconDeshacer.className = "w-[20px] h-[18px] ml-[2px] mt-[2px]";
+          iconDeshacer.src = 'img/cancelar.png';
+          iconDeshacer.className = "w-[18px] h-[18px] ml-[2px]";
   
           btnEnviar.appendChild(iconEnviar);
           btnEnviar.addEventListener('click', function () {

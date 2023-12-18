@@ -11,6 +11,62 @@ function ObtenerSede(){
     })
 }
 
+function GuardarSede(){
+  let data = {
+      cod_sede: document.getElementById("input1").value,
+      nombre_sede: document.getElementById("input2").value,
+      ubicacion: document.getElementById("input3").value,
+  }
+
+  console.log(data)
+
+  fetch(baseUrl + "/sede", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
+  }).then(res => {
+      ObtenerSede()
+  })
+}
+
+function ActualizarSede(){
+
+  let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+  let idCheckbox = checkboxSeleccionado.id
+
+  let data = {
+      cod_sede: idCheckbox,
+      cod_sedeNuevo: document.getElementById("input1").value,
+      nombre_sede: document.getElementById("input2").value,
+      ubicacion: document.getElementById("input3").value,
+  }
+
+  console.log(data)
+
+  fetch(baseUrl + "/sede", {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
+  }).then(res => {
+      ObtenerSede()
+  })
+}
+
+function EliminarSede(){
+
+  let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+  let idCheckbox = checkboxSeleccionado.id
+
+  fetch(baseUrl + "/sede/" + idCheckbox, {method: "Delete"}).then(res =>{
+      console.log(res)
+      ObtenerSede()
+  })
+}
+
 function ImprimirSede(sede){
     let contenedor = document.getElementById("cuerpo-tabla")
     contenedor.innerHTML = ""
@@ -103,6 +159,7 @@ function añadirRegistro() {
                 var registro = document.createElement('input');
                 registro.type = "text";
                 registro.className = "border border-solid border-gray-300 text-center px-2 py-1 w-full h-full box-border";  /* Le da estilo a las celdas agregadas formato texto*/
+                registro.id = "input" + i
                 nueva.appendChild(registro);
             }
         }

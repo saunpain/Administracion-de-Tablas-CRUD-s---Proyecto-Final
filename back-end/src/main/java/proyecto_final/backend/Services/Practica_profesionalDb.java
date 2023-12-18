@@ -43,11 +43,33 @@ public class Practica_profesionalDb {
                 return practicas;
     }
 
-    public int EliminarPractica(String cp){ //cp = Codigo Proyecto
+
+    
+    public int GuardarPractica(Practica_profesional practica){
         int resultado = 0;
         try{
             Statement stmt = cn.createStatement();
-            String query = "delete from Practica_Profesional where cod_proyecto = '" + cp + "'";
+            String query = "exec AñadirPractica '" +
+            practica.getCod_proyecto() + "', " +
+            "'" + practica.getCod_proyecto() + "', ";
+
+            resultado = stmt.executeUpdate(query);
+
+            stmt.close();
+
+            return resultado;
+        } catch (Exception e){
+            
+        }
+        return resultado;
+    }
+    
+    
+    public int EliminarPractica(String Practica){
+        int resultado = 0;
+        try{
+            Statement stmt = cn.createStatement();
+            String query = "exec EliminarPractica'" + Practica + "'";
 
             return stmt.executeUpdate(query);
         } catch (Exception e) {
@@ -55,5 +77,25 @@ public class Practica_profesionalDb {
         }
         return resultado;
     }
-    
+
+    public int ActualizarPractica(Practica_profesional practica){
+        int resultado = 0;
+        try{
+            System.out.println(practica.getCod_proyecto());
+            System.out.println(practica.getCod_proyecto());
+
+            Statement stmt = cn.createStatement();
+            String query = "exec ActualizarPractica'" +
+            practica.getCod_proyecto() + "', " +
+            "'" + practica.getCod_proyecto()+ "', ";
+
+
+            resultado = stmt.executeUpdate(query);
+
+            stmt.close();
+            return resultado;
+        } catch (Exception e) {
+        }
+        return resultado;
+    }
 }

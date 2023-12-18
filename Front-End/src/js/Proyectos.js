@@ -11,6 +11,119 @@ function ObtenerProyectos(){
     })
 }
 
+function FiltrarProyecto() {
+  let titulo = document.getElementById("inputTitulo").value.trim() || null
+  let tipo = document.getElementById("selectTipo").value
+  let etapa = document.getElementById("selectEtapa").value
+  let anio = document.getElementById("selectAnio").value
+
+  fetch(baseUrl + `/proyecto/filtrar?titulo=${titulo}&tipo=${tipo}&etapa=${etapa}&anio=${anio}`).then(res => {
+      res.json().then(json =>{
+          proyectosFiltro = json
+          console.log(proyectosFiltro)
+          ImprimirProyectos(proyectosFiltro)
+      })
+  }).catch(error => {
+      console.error("Error en la solicitud:", error);
+  });
+}
+
+function GuardarProyecto(){
+    let fecha_entrega = formatearFecha(document.getElementById("input5"))
+    let fecha_verificacion = formatearFecha(document.getElementById("input6"))
+    let fecha_evaluacion = formatearFecha(document.getElementById("input7"))
+    let fecha_aprobacion = formatearFecha(document.getElementById("input8"))
+    let fecha_sustentacion = formatearFecha(document.getElementById("input9"))
+
+    let data = {
+        cod_proyecto: document.getElementById("input1").value,
+        tipo_proyecto: document.getElementById("input2").value,
+        titulo_proyecto: document.getElementById("input3").value,
+        cod_profesor: document.getElementById("input4").value,
+        fecha_entrega: fecha_entrega,
+        fecha_verificacion: fecha_verificacion,
+        fecha_evaluacion: fecha_evaluacion,
+        fecha_aprobacion: fecha_aprobacion,
+        fecha_sustentacion: fecha_sustentacion
+    }
+
+    console.log(data)
+
+    fetch(baseUrl + "/proyecto", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    }).then(res => {
+        ObtenerProyectos()
+    })
+}
+
+function formatearFecha(fecha){
+    if (!fecha || isNaN(new Date(fecha))) {
+        return null;
+    }
+
+    let fechaObj = new Date(fecha)
+
+    let anio = fechaObj.getFullYear()
+    let mes = (fechaObj.getMonth() + 1).toString().padStart(2, "0")
+    let dia = (fechaObj.getDate() + 1).toString().padStart(2, "0")
+
+    let fechaFormateada = anio + "-" + mes + "-" + dia
+    
+    return fechaFormateada
+}
+
+function ActualizarProyecto(){
+
+    let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+    let idCheckbox = checkboxSeleccionado.id
+
+    let fecha_entrega = formatearFecha(document.getElementById("input5").value)
+    let fecha_verificacion = formatearFecha(document.getElementById("input6").value)
+    let fecha_evaluacion = formatearFecha(document.getElementById("input7").value)
+    let fecha_aprobacion = formatearFecha(document.getElementById("input8").value)
+    let fecha_sustentacion = formatearFecha(document.getElementById("input9").value)
+
+    let data = {
+        cod_proyecto: idCheckbox,
+        codigoNuevo: document.getElementById("input1").value,
+        tipo_proyecto: document.getElementById("input2").value,
+        titulo_proyecto: document.getElementById("input3").value,
+        cod_profesor: document.getElementById("input4").value,
+        fecha_entrega: fecha_entrega,
+        fecha_verificacion: fecha_verificacion,
+        fecha_evaluacion: fecha_evaluacion,
+        fecha_aprobacion: fecha_aprobacion,
+        fecha_sustentacion: fecha_sustentacion
+    }
+
+    console.log(data)
+
+    fetch(baseUrl + "/proyecto", {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    }).then(res => {
+        ObtenerProyectos()
+    })
+}
+
+function EliminarProyecto(){
+
+    let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+    let idCheckbox = checkboxSeleccionado.id
+
+    fetch(baseUrl + "/proyecto/" + idCheckbox, {method: "Delete"}).then(res =>{
+        console.log(res)
+        ObtenerProyectos()
+    })
+}
+
 function ImprimirProyectos(proyectos){
     let contenedor = document.getElementById("cuerpo-tabla")
     contenedor.innerHTML = ""
@@ -32,8 +145,8 @@ function ImprimirProyectos(proyectos){
 function MapearProyecto(p) {
     return `<tr>
     <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-        <input type="checkbox" class="ml-3.5 seleccionar"/>
-        <label for="selectAll"></label>
+        <input type="checkbox" id="${p.cod_proyecto}" class="ml-3.5 seleccionar"/>
+        <label for="${p.cod_proyecto}"></label>
     </td>
     <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${p.cod_proyecto}</td>
     <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${p.tipo_proyecto}</td>
@@ -87,7 +200,9 @@ function añadirRegistro() {
             iconEliminar.className = "w-[21px] h-[19px] ml-[5px] mt-[4px]";
 
             btnEnviar.appendChild(iconEnviar);
-            btnEnviar.addEventListener('click', function () {});
+            btnEnviar.addEventListener('click', function () {
+                GuardarProyecto()
+            });
             
             btnEliminar.appendChild(iconEliminar);
             btnEliminar.addEventListener('click', function () {
@@ -108,6 +223,7 @@ function añadirRegistro() {
                 var registro = document.createElement('input');
                 registro.type = "text";
                 registro.className = "border border-solid border-gray-300 text-center px-2 py-1 w-full h-full box-border";  /* Le da estilo a las celdas agregadas formato texto*/
+                registro.id = "input" + i
                 nueva.appendChild(registro);
             }
         }
@@ -115,82 +231,74 @@ function añadirRegistro() {
     nuevaCelda.cells[0].querySelector('input').focus();
 }
 
+
 function hacerEditable() {
     var table = document.getElementById('cuerpo-tabla');
     var checkboxes = table.getElementsByClassName('seleccionar');
-  
+
     for (var i = 0; i < checkboxes.length; i++) {
-      var checkbox = checkboxes[i];
-  
-      if (checkbox.checked) {
-        var row = checkbox.closest('tr');
-  
-        if (!row.classList.contains('editable')) {
-          row.classList.add('editable');
-  
-          // Encuentra el checkbox y ocúltalo
-          var checkboxCell = row.cells[0];
-          var checkboxInput = checkboxCell.querySelector('input[type="checkbox"]');
-          checkboxInput.style.display = 'none';
-  
-          // Recorre todas las celdas de la fila, excepto la primera (checkbox)
-          for (var j = 1; j < row.cells.length; j++) {
-            var cell = row.cells[j];
-            var currentValue = cell.textContent;
-  
-            // Guarda el valor original de la celda
-            cell.setAttribute('data-original-value', currentValue);
-  
-           
-            var input = document.createElement('input');
-            input.type = 'text';
-            input.value = currentValue;
-  
-            
-            input.addEventListener('blur', function () {
-              guardarCambios(row, j, this.value);
-            });
-  
-            // Reemplaza la celda con el campo de entrada
-            cell.innerHTML = '';
-            cell.appendChild(input);
-          }
-  
-          // Agrega botones a la celda del checkbox
-          var btnEnviar = document.createElement('button');
-          var iconEnviar = document.createElement('img');
-          iconEnviar.src = 'img/añadir.png';
-          iconEnviar.className = "bg-green-300 w-[18px] h-[18px] ml-[2px]";
-  
-          var btnDeshacer = document.createElement('button');
-          var iconDeshacer = document.createElement('img');
-          iconDeshacer.src = 'img/cancelar.png'; 
-          iconDeshacer.className = "w-[18px] h-[18px] mt-[2px]";
-  
-          btnEnviar.appendChild(iconEnviar);
-          btnEnviar.addEventListener('click', function () {
-            // Agrega la lógica
-          });
-  
-          btnDeshacer.appendChild(iconDeshacer);
-          btnDeshacer.addEventListener('click', function () {
-            // Elimina los botones antes de deshacer
-            btnEnviar.remove();
-            btnDeshacer.remove();
-            deshacerCambios(row);
-          });
-  
-          checkboxCell.appendChild(btnDeshacer);
-          checkboxCell.appendChild(btnEnviar);
+        var checkbox = checkboxes[i];
+
+        if (checkbox.checked) {
+            var row = checkbox.closest('tr');
+
+            if (!row.classList.contains('editable')) {
+                row.classList.add('editable');
+
+                // Encuentra el checkbox y ocúltalo
+                var checkboxCell = row.cells[0];
+                var checkboxInput = checkboxCell.querySelector('input[type="checkbox"]');
+                checkboxInput.style.display = 'none';
+
+                // Recorre todas las celdas de la fila, excepto la primera (checkbox)
+                for (var j = 1; j < row.cells.length; j++) {
+                    var cell = row.cells[j];
+                    var currentValue = cell.textContent;
+
+                    // Guarda el valor original de la celda
+                    cell.setAttribute('data-original-value', currentValue);
+
+                    // Crea un input con id dinámico
+                    var input = document.createElement('input');
+                    input.type = 'text';
+                    input.value = currentValue;
+                    input.id = 'input' + j; // Aquí se crea el id dinámico
+
+                    // Reemplaza la celda con el campo de entrada
+                    cell.innerHTML = '';
+                    cell.appendChild(input);
+                }
+
+                // Agrega botones a la celda del checkbox
+                var btnEnviar = document.createElement('button');
+                var iconEnviar = document.createElement('img');
+                iconEnviar.src = 'img/añadir.png';
+                iconEnviar.className = "bg-green-300 w-[18px] h-[18px] mt-[2px]";
+
+                var btnDeshacer = document.createElement('button');
+                var iconDeshacer = document.createElement('img');
+                iconDeshacer.src = 'img/cancelar.png';
+                iconDeshacer.className = "w-[18px] h-[18px] ml-[2px]";
+
+                btnEnviar.appendChild(iconEnviar);
+                btnEnviar.addEventListener('click', function () {
+                    ActualizarProyecto();
+                });
+
+                btnDeshacer.appendChild(iconDeshacer);
+                btnDeshacer.addEventListener('click', function () {
+                    // Elimina los botones antes de deshacer
+                    btnEnviar.remove();
+                    btnDeshacer.remove();
+                    deshacerCambios(row);
+                });
+
+                checkboxCell.appendChild(btnDeshacer);
+                checkboxCell.appendChild(btnEnviar);
+            }
         }
-      }
     }
-  }
-  
-  function guardarCambios(row, cellIndex, newValue) {
-    // Actualiza el contenido de la celda con el nuevo valor
-    row.cells[cellIndex].textContent = newValue;
-  }
+}
   
   function deshacerCambios(row) {
     // Deshace los cambios y sale del modo de edición

@@ -45,4 +45,75 @@ public class AdministrativoDb {
         }
         return administrativos;
     }
+    
+    public int GuardarAdministrativo(Administrativo administrativo){
+        int resultado = 0;
+        try{
+            System.out.println(administrativo.getCod_admin());
+            System.out.println(administrativo.getNombre_admin());
+            System.out.println(administrativo.getApellido_admin());
+            System.out.println(administrativo.getTelefono_admin());
+            System.out.println(administrativo.getCorreo_admin());
+            System.out.println(administrativo.getCedula_administrativo());
+
+            Statement stmt = cn.createStatement();
+            String query = "exec AñadirAdministrativo " +
+            "'" + administrativo.getNombre_admin() + "', " +
+            "'" + administrativo.getApellido_admin() + "', " +
+            "'" + administrativo.getTelefono_admin() + "', " +
+            "'" + administrativo.getCorreo_admin() + "', " +
+            "'" + administrativo.getCedula_administrativo() + "'";
+
+            resultado = stmt.executeUpdate(query);
+
+            stmt.close();
+
+            return resultado;
+        } catch (Exception e){
+            
+        }
+        return resultado;
+    }
+ 
+    public int ActualizarAdministrativo(Administrativo administrativo){
+        int resultado = 0;
+        try{
+            System.out.println(administrativo.getCod_admin());
+            System.out.println(administrativo.getNombre_admin());
+            System.out.println(administrativo.getApellido_admin());
+            System.out.println(administrativo.getTelefono_admin());
+            System.out.println(administrativo.getCorreo_admin());
+            System.out.println(administrativo.getCedula_administrativo());
+
+            Statement stmt = cn.createStatement();
+            String query = "exec ActualizarAdministrativo " +
+            "'" + administrativo.getCod_admin() + "', " +
+            "'" + administrativo.getNombre_admin() + "', " +
+            "'" + administrativo.getApellido_admin() + "', " +
+            "'" + administrativo.getTelefono_admin() + "', " +
+            "'" + administrativo.getCorreo_admin() + "', " +
+            "'" + administrativo.getCedula_administrativo() + "'";
+
+            resultado = stmt.executeUpdate(query);
+
+            stmt.close();
+            return resultado;
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
+
+    public int EliminarAdministrativo(String codigo){
+        int resultado = 0;
+        try{
+            Statement stmt = cn.createStatement();
+            String query = "exec EliminarAdministrativo " + codigo + " ";
+
+            return stmt.executeUpdate(query);
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
 }

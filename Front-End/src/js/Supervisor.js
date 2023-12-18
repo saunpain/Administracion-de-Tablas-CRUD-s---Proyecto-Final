@@ -11,6 +11,27 @@ function ObtenerSupervisor(){
     })
 }
 
+function GuardarSupervisor(){
+  let data = {
+      cod_supervisor: document.getElementById("input1").value,
+      nombre_supervisor: document.getElementById("input2").value,
+      apellido_supervisor: document.getElementById("input3").value,
+      cod_empresa: document.getElementById("input4").value,
+  }
+
+  console.log(data)
+
+  fetch(baseUrl + "/supervisor", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
+  }).then(res => {
+      ObtenerSupervisor()
+  })
+}
+
 function ImprimirSupervisor(supervisor){
     let contenedor = document.getElementById("cuerpo-tabla")
     contenedor.innerHTML = ""
@@ -83,7 +104,9 @@ function añadirRegistro() {
             iconEliminar.className = "w-[21px] h-[19px] ml-[5px] mt-[4px]";
 
             btnEnviar.appendChild(iconEnviar);
-            btnEnviar.addEventListener('click', function () {});
+            btnEnviar.addEventListener('click', function () {
+              GuardarSupervisor()
+            });
             
             btnEliminar.appendChild(iconEliminar);
             btnEliminar.addEventListener('click', function () {
@@ -104,14 +127,13 @@ function añadirRegistro() {
                 var registro = document.createElement('input');
                 registro.type = "text";
                 registro.className = "border border-solid border-gray-300 text-center px-2 py-1 w-full h-full box-border";  /* Le da estilo a las celdas agregadas formato texto*/
+                registro.id = "input" + i
                 nueva.appendChild(registro);
             }
         }
     }
     nuevaCelda.cells[0].querySelector('input').focus();
 }
-
-
 
 function hacerEditable() {
     var table = document.getElementById('cuerpo-tabla');

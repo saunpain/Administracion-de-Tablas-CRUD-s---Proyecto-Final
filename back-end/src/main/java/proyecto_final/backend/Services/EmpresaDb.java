@@ -42,11 +42,40 @@ public class EmpresaDb {
         return empresas;
     }
 
-    public int GuardarEmpresa(Empresa empresa) {
+public int GuardarEmpresa(Empresa empresas){
         int resultado = 0;
         try{
+            System.out.println(empresas.getCod_empresa());
+            System.out.println(empresas.getNombre_empresa());
+
             Statement stmt = cn.createStatement();
-            String query = " "; //proceso almacenado para guardar empresas
+            String query = "exec AñadirEmpresa" +
+            "'" + empresas.getCod_empresa() + "', " +
+            "'" + empresas.getNombre_empresa();
+
+            System.out.println(query);
+
+            resultado = stmt.executeUpdate(query);
+
+            stmt.close();
+
+            return resultado;
+        } catch (Exception e){
+            
+        }
+        return resultado;
+    }
+
+    public int ActualizarEmpresa(Empresa empresa){
+        int resultado = 0;
+        try{
+            System.out.println(empresa.getCod_empresa());
+            System.out.println(empresa.getNombre_empresa());
+
+            Statement stmt = cn.createStatement();
+            String query = "exec ActualizarEmpresa " +
+            "'" + empresa.getCod_empresa() + "', " +
+            "'" + empresa.getNombre_empresa() + "'";
 
             resultado = stmt.executeUpdate(query);
 
@@ -58,28 +87,11 @@ public class EmpresaDb {
         return resultado;
     }
 
-    public int ActualizarEmpresa(Empresa empresa) {
-        int resultado = 0;
-
-        try{
-            Statement stmt = cn.createStatement();
-            String query = " ";
-
-            resultado = stmt.executeUpdate(query);
-
-            stmt.close();
-            return resultado;
-        } catch (Exception e) {
-
-        }
-        return resultado;
-    }
-
-    public int EliminarEmpresa(String ce){ //ce = Codigo Empresa
+        public int EliminarEmpresa(String cod_empresa){
         int resultado = 0;
         try{
             Statement stmt = cn.createStatement();
-            String query = "delete from Empresa where cod_empresa = '" + ce + "'";
+            String query = "exec EliminarEmpresa '" + cod_empresa + "'";
 
             return stmt.executeUpdate(query);
         } catch (Exception e) {
@@ -88,3 +100,5 @@ public class EmpresaDb {
         return resultado;
     }
 }
+
+

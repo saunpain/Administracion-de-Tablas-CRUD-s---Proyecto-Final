@@ -13,6 +13,62 @@ function ObtenerDepartamentos(){
     })
 }
 
+function GuardarDepartamento(){
+  let data = {
+      cod_depto: document.getElementById("input1").value,
+      nombre_departamento: document.getElementById("input2").value,
+      cod_profesor: document.getElementById("input3").value,
+  }
+
+  console.log(data)
+
+  fetch(baseUrl + "/departamento", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
+  }).then(res => {
+      ObtenerDepartamentos()
+  })
+}
+
+function ActualizarDepartamento(){
+
+  let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+  let idCheckbox = checkboxSeleccionado.id
+
+  let data = {
+      cod_depto: idCheckbox,
+      cod_deptoNuevo: document.getElementById("input1").value,
+      nombre_departamento: document.getElementById("input2").value,
+      cod_profesor: document.getElementById("input3").value,
+  }
+
+  console.log(data)
+
+  fetch(baseUrl + "/departamento", {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
+  }).then(res => {
+      ObtenerDepartamentos()
+  })
+}
+
+function EliminarDepartamento(){
+
+  let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+  let idCheckbox = checkboxSeleccionado.id
+
+  fetch(baseUrl + "/de/" + idCheckbox, {method: "Delete"}).then(res =>{
+      console.log(res)
+      ObtenerDepartamentos()
+  })
+}
+
 function ImprimirDepartamentos(){
     let contenedor = document.getElementById("cuerpo-tabla")
     console.log("contenedor obtenido")
@@ -38,8 +94,8 @@ function MapearDepartamento(d) {
     return `
     <tr>
     <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-        <input type="checkbox" class="ml-3.5 seleccionar"/>
-        <label for="selectAll"></label>
+        <input type="checkbox" class="ml-3.5 seleccionar" id="${d.cod_depto}"/>
+        <label for="${d.cod_depto}"></label>
     </td>
     <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${d.cod_depto}</td>
     <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${d.nombre_departamento}</td>
@@ -108,6 +164,7 @@ function añadirRegistro() {
                 var registro = document.createElement('input');
                 registro.type = "text";
                 registro.className = "border border-solid border-gray-300 text-center px-2 py-1 w-full h-full box-border";  /* Le da estilo a las celdas agregadas formato texto*/
+                registro.id = "input" + i
                 nueva.appendChild(registro);
             }
         }

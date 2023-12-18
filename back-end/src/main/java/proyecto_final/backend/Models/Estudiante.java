@@ -2,6 +2,8 @@ package proyecto_final.backend.Models;
 
 public class Estudiante {
     private String cedulaNueva;
+    private String telefono;
+    private String correo;
 
     private String cedula;
     private String pri_nom;
@@ -19,16 +21,17 @@ public class Estudiante {
     }
 
     public Estudiante(String Cedula, String Pri_nom, String Seg_nom, String Pri_apellido, 
-    String Seg_apellido, int Anio_cursa, String Semestre, float Indice, String Cod_proyecto, 
-    String Cod_carrera, String Cod_sede)
+    String Seg_apellido, String Telefono, String Correo, String Cod_proyecto, String Cod_carrera, 
+    int Anio_cursa, float Indice,  String Cod_sede)
     {
         cedula = Cedula;
         pri_nom = Pri_nom;
         seg_nom = Seg_nom;
         pri_apellido = Pri_apellido;
         seg_apellido = Seg_apellido;
+        telefono = Telefono;
+        correo = Correo;
         anio_cursa = Anio_cursa;
-        semestre = Semestre;
         indice = Indice;
         cod_proyecto = Cod_proyecto;
         cod_carrera = Cod_carrera;
@@ -36,17 +39,17 @@ public class Estudiante {
     }
 
     public Estudiante(String CedulaNueva, String Cedula, String Pri_nom, String Seg_nom, String Pri_apellido, 
-    String Seg_apellido, int Anio_cursa, String Semestre, float Indice, String Cod_proyecto, 
-    String Cod_carrera, String Cod_sede)
-    {
+    String Seg_apellido, String Telefono, String Correo, int Anio_cursa, float Indice, String Cod_proyecto, 
+    String Cod_carrera, String Cod_sede){
         cedulaNueva = CedulaNueva;
         cedula = Cedula;
         pri_nom = Pri_nom;
         seg_nom = Seg_nom;
         pri_apellido = Pri_apellido;
         seg_apellido = Seg_apellido;
+        telefono = Telefono;
+        correo = Correo;
         anio_cursa = Anio_cursa;
-        semestre = Semestre;
         indice = Indice;
         cod_proyecto = Cod_proyecto;
         cod_carrera = Cod_carrera;
@@ -147,5 +150,21 @@ public class Estudiante {
 
     public void setCedulaNueva(String cedulaNueva) {
         this.cedulaNueva = cedulaNueva;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 }

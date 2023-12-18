@@ -50,7 +50,62 @@ public class SupervisorDb {
             Statement stmt = cn.createStatement();
             String query = "delete from Supervisor where cod_supervisor = '" + csuperv + "'";
 
+            stmt.close();
             return stmt.executeUpdate(query);
+        } catch (Exception e) {
+
+        }
+
+        return resultado;
+    }
+
+    
+    public int GuardarSupervisor(Supervisor supervisor){
+        int resultado = 0;
+        try{
+            System.out.println(supervisor.getCod_supervisor());
+            System.out.println(supervisor.getNombre_supervisor());
+            System.out.println(supervisor.getApellido_supervisor());
+            System.out.println(supervisor.getCod_empresa());
+
+            Statement stmt = cn.createStatement();
+            String query = "exec AñadirSupervisor " +
+            "'" + supervisor.getNombre_supervisor() + "', " +
+            "'" + supervisor.getApellido_supervisor() + "', " +
+            "'" + supervisor.getCod_empresa() + "'";
+
+            System.out.println(query);
+
+            resultado = stmt.executeUpdate(query);
+
+            stmt.close();
+
+            return resultado;
+        } catch (Exception e){
+            
+        }
+        return resultado;
+    }
+
+    public int ActualizarSupervisor(Supervisor supervisor){
+        int resultado = 0;
+        try{
+            System.out.println(supervisor.getCod_supervisor());
+            System.out.println(supervisor.getNombre_supervisor());
+            System.out.println(supervisor.getApellido_supervisor());
+            System.out.println(supervisor.getCod_empresa());
+
+            Statement stmt = cn.createStatement();
+            String query = "exec ActualizarEstudiante " +
+            supervisor.getCod_supervisor() + ", " +
+            "'" + supervisor.getNombre_supervisor() + "', " +
+            "'" + supervisor.getApellido_supervisor() + "', " +
+            "'" + supervisor.getCod_empresa() + "'";
+
+            resultado = stmt.executeUpdate(query);
+
+            stmt.close();
+            return resultado;
         } catch (Exception e) {
 
         }

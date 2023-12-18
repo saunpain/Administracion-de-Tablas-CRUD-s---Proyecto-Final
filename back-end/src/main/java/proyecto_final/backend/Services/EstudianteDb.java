@@ -22,9 +22,9 @@ public class EstudianteDb {
 
         try{
             Statement stmt = cn.createStatement();
-            String query = "SELECT * FROM Estudiante";
+            String query = "SELECT * FROM VistaEstudiante";
             ResultSet rs = stmt.executeQuery(query);
- 
+            
             while(rs.next()){
                 Estudiante estudiante = new Estudiante(
                     rs.getString("cedula"),
@@ -32,11 +32,12 @@ public class EstudianteDb {
                     rs.getString("seg_nom"),
                     rs.getString("pri_apellido"),
                     rs.getString("seg_apellido"),
-                    rs.getInt("año_cursa"),
-                    rs.getString("semestre"),
-                    rs.getFloat("indice"),
+                    rs.getString("telefono"),
+                    rs.getString("correo"),
                     rs.getString("cod_proyecto"),
                     rs.getString("cod_carrera"),
+                    rs.getInt("año_cursa"),
+                    rs.getFloat("indice"),
                     rs.getString("cod_sede")
                 );
 
@@ -55,7 +56,7 @@ public class EstudianteDb {
         List<Estudiante> estudiantes = new ArrayList<>();
         try{
             Statement stmt = cn.createStatement();
-            String query = "exec FiltrarEstudiantes " + nombre + ", " + identificacion + ", " + carrera + ", " + anio;
+            String query = "exec FiltrarEstudiantes " + nombre + ", " + carrera + ", " + identificacion + ", " + anio;
             ResultSet rs = stmt.executeQuery(query);
             
             while(rs.next()){
@@ -65,11 +66,12 @@ public class EstudianteDb {
                     rs.getString("seg_nom"),
                     rs.getString("pri_apellido"),
                     rs.getString("seg_apellido"),
-                    rs.getInt("año_cursa"),
-                    rs.getString("semestre"),
-                    rs.getFloat("indice"),
+                    rs.getString("telefono"),
+                    rs.getString("correo"),
                     rs.getString("cod_proyecto"),
                     rs.getString("cod_carrera"),
+                    rs.getInt("año_cursa"),
+                    rs.getFloat("indice"),
                     rs.getString("cod_sede")
                 );
                 
@@ -135,8 +137,9 @@ public class EstudianteDb {
             System.out.println(estudiante.getSeg_nom());
             System.out.println(estudiante.getPri_apellido());
             System.out.println(estudiante.getSeg_apellido());
+            System.out.println(estudiante.getTelefono());
+            System.out.println(estudiante.getCorreo());
             System.out.println(estudiante.getAnio_cursa());
-            System.out.println(estudiante.getSemestre());
             System.out.println(estudiante.getIndice());
             System.out.println(estudiante.getCod_proyecto());
             System.out.println(estudiante.getCod_carrera());
@@ -150,11 +153,12 @@ public class EstudianteDb {
             "'" + estudiante.getSeg_nom() + "', " +
             "'" + estudiante.getPri_apellido() + "', " +
             "'" + estudiante.getSeg_apellido() + "', " +
-            estudiante.getAnio_cursa() + ", " +
-            "'" + estudiante.getSemestre() + "', " +
-            estudiante.getIndice() + ", " +
+            "'" + estudiante.getTelefono() + "', " +
+            "'" + estudiante.getCorreo() + "', " +
             "'" + estudiante.getCod_proyecto() + "', " +
             "'" + estudiante.getCod_carrera() + "', " +
+            estudiante.getAnio_cursa() + ", " +
+            estudiante.getIndice() + ", " +
             "'" + estudiante.getCod_sede() + "'";
 
             resultado = stmt.executeUpdate(query);

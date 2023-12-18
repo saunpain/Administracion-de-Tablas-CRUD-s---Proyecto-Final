@@ -87,11 +87,71 @@ public class ProfesorDb{
         return profesores;
     }
 
+    public int GuardarProfesor(Profesor profesor){
+        int resultado = 0;
+        try{
+            Statement stmt = cn.createStatement();
+            String query = "exec AñadirProfesor " 
+            + profesor.getCod_profesor() + ", " 
+            + "'" + profesor.getNombre_prof() + "', " 
+            + "'" + profesor.getApellido_prof() + "', " 
+            + "'" + profesor.getTipo_prof() + "', " 
+            + "'" + profesor.getCod_depto() + "', " 
+            + "'" + profesor.getTelefono_profesor() + "', " 
+            + "'" + profesor.getCorreo_profesor() + "', " 
+            + "'" + profesor.getCedula_profesor() + "'";
+
+            resultado = stmt.executeUpdate(query);
+
+            stmt.close();
+
+            return resultado;
+        } catch (Exception e){
+            
+        }
+        return resultado;
+    }
+
+    public int ActualizarProfesor(Profesor profesor){
+        int resultado = 0;
+        try{
+            System.out.println(profesor.getCod_profesor());
+            System.out.println(profesor.getCod_profesorNuevo());
+            System.out.println(profesor.getNombre_prof());
+            System.out.println(profesor.getApellido_prof());
+            System.out.println(profesor.getTipo_prof());
+            System.out.println(profesor.getCod_depto());
+            System.out.println(profesor.getTelefono_profesor());
+            System.out.println(profesor.getCorreo_profesor());
+            System.out.println(profesor.getCedula_profesor());
+
+            Statement stmt = cn.createStatement();
+            String query = "exec ActualizarProfesor " +
+            + profesor.getCod_profesor() + ", " 
+            + profesor.getCod_profesorNuevo() + ", " 
+            + "'" + profesor.getNombre_prof() + "', " 
+            + "'" + profesor.getApellido_prof() + "', " 
+            + "'" + profesor.getTipo_prof() + "', " 
+            + "'" + profesor.getCod_depto() + "', " 
+            + "'" + profesor.getTelefono_profesor() + "', " 
+            + "'" + profesor.getCorreo_profesor() + "', " 
+            + "'" + profesor.getCedula_profesor() + "'";
+
+            resultado = stmt.executeUpdate(query);
+
+            stmt.close();
+            return resultado;
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
+
     public int EliminarProfesor(String cprof){ //cprof = Codigo Profesor
         int resultado = 0;
         try{
             Statement stmt = cn.createStatement();
-            String query = "delete from Profesor where cod_profesor = '" + cprof + "'";
+            String query = "exec EliminarProfesor " + cprof;
 
             return stmt.executeUpdate(query);
         } catch (Exception e) {

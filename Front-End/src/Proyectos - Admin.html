@@ -195,11 +195,11 @@
                     <div class="flex-col">
                         <div class="mt-2 lg:mr-10 w-full">
                             <p>Título</p>
-                            <input type="search" placeholder="Título de proyecto" class="w-full lg:w-88 xl:96 mb-2 h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500">
+                            <input type="search" id="inputTitulo" onkeypress="FiltrarProyecto()" placeholder="Título de proyecto" class="w-full lg:w-88 xl:96 mb-2 h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500">
                         </div>
                         <div class="mt-2 lg:mt-0 w-auto">
                             <p>Etapa</p>
-                            <select class="w-full lg:w-96 xl:w-96 mb-2 h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500">
+                            <select id="selectEtapa" onchange="FiltrarProyecto()" class="w-full lg:w-96 xl:w-96 mb-2 h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500">
                                 <option disabled selected>Seleccione una etapa</option>
                                 <option>Etapa de entrega</option>
                                 <option>Etapa de verificación</option>
@@ -212,7 +212,7 @@
                     <div class="flex-col">
                         <div class="mt-2 w-full lg:w-auto">
                             <p>Modalidad</p>
-                            <select class="w-full h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500">
+                            <select id="selectTipo" onchange="FiltrarProyecto()" class="w-full h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500">
                                 <option disabled selected>Seleccione una modalidad</option>
                                 <option>Tesis Teórica</option>
                                 <option>Tesis Teórica Práctica</option>
@@ -221,7 +221,7 @@
                         </div>
                         <div class="mt-2 w-full">
                             <p>Año</p>
-                            <select class="w-full mb-2 xl:w-96 lg:w-88  h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500">
+                            <select id="selectAnio" onchange="FiltrarProyecto()" class="w-full mb-2 xl:w-96 lg:w-88  h-10 text-gray-400 rounded border border-gray-300 px-4 shadow-md focus:outline-none focus:border-indigo-500">
                                 <option disabled selected>Seleccione año</option>
                                 <option value="">2023</option>
                             </select>
@@ -232,7 +232,7 @@
                 <div class="mt-8 ml-1">
                     <button onclick="añadirRegistro()" class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-4 py-2 font-roboto text-md mb-2 md:mb-0 md:mr-4">Añadir</button>
                     <button onclick="hacerEditable()"  class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-4 py-2 ml-4 font-roboto text-md mb-2 md:mb-0 md:mr-4">Actualizar</button>
-                    <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-4 py-2 ml-4 font-roboto text-md">Eliminar</button>
+                    <button onclick="EliminarProyecto()" class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-4 py-2 ml-4 font-roboto text-md">Eliminar</button>
                 </div>
             </div>
             <div class="max-h-[40vh] min-h-[15rem] xl:min-h-[26rem] md:min-h-[26rem] md:max-h-[28rem] lg:max-h-[25rem] xl:max-h-[32rem] ml-6 bg-white mt-8 rounded-md shadow-md overflow-auto mr-10 mb-8 contenedor_datos text-[14px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[18px]">

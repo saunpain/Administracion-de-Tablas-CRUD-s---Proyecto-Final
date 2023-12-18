@@ -11,24 +11,126 @@ function ObtenerUsuario(){
     })
 }
 
-function ImprimirUsuario(usuario){
-    let contenedor = document.getElementById("cuerpo-tabla")
-    contenedor.innerHTML = ""
+function formatearFecha(fecha){
+  if (!fecha || isNaN(new Date(fecha))) {
+      return null;
+  }
 
-    usuario.forEach(a => {
-        contenedor.innerHTML += MapearUsuario(a)
-        console.log(a)
-    })
+  let fechaObj = new Date(fecha)
 
-    let selectAllCheckbox = document.getElementById("selectAll")
-    let checkboxes = document.querySelectorAll('input[type="checkbox"]')
+  let anio = fechaObj.getFullYear()
+  let mes = (fechaObj.getMonth() + 1).toString().padStart(2, "0")
+  let dia = (fechaObj.getDate() + 1).toString().padStart(2, "0")
 
-    selectAllCheckbox.addEventListener('change', function () {
-        checkboxes.forEach(checkbox => {
-            checkbox.checked = selectAllCheckbox.checked;
-        });
-    });
+  let fechaFormateada = anio + "-" + mes + "-" + dia
+  
+  return fechaFormateada
 }
+
+function GuardarUsuario(){
+
+  let creado = formatearFecha(document.getElementById("input3").value)
+
+  let data = {
+    cod_usuario: document.getElementById("input1").value,
+    usuario: document.getElementById("input2").value,
+    creado: creado,
+    Cedula_administrativo: document.getElementById("input4").value,
+  }
+
+  console.log(data)
+
+  fetch(baseUrl + "/usuario", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
+  }).then(res => {
+    ObtenerUsuario()
+  })
+}
+
+function ImprimirUsuario(usuario){
+  let contenedor = document.getElementById("cuerpo-tabla")
+  contenedor.innerHTML = ""
+
+  usuario.forEach(a => {
+      contenedor.innerHTML += MapearUsuario(a)
+      console.log(a)
+  })
+
+  let selectAllCheckbox = document.getElementById("selectAll")
+  let checkboxes = document.querySelectorAll('input[type="checkbox"]')
+
+  selectAllCheckbox.addEventListener('change', function () {
+      checkboxes.forEach(checkbox => {
+          checkbox.checked = selectAllCheckbox.checked;
+      });
+  });
+}
+
+function ActualizarUsuario(){
+
+  let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+  let idCheckbox = checkboxSeleccionado.id
+
+  let data = {
+    cod_usuario: document.getElementById("input1").value,
+    usuario: document.getElementById("input2").value,
+    contrasena: document.getElementById("input3").value,
+    creado: document.getElementById("input4").value,
+    cod_tipo: document.getElementById("input5").value,
+    Cedula_profesor: document.getElementById("input6").value,
+    Cedula_administrativo: document.getElementById("input7").value,
+    Cedula_estudiante: document.getElementById("input8").value,
+  }
+
+  console.log(data)
+
+  fetch(baseUrl + "/usuario", {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
+  }).then(res  => {
+      ObtenerUsuario()
+  })
+}
+
+
+
+function EliminarUsuario(){
+
+  let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+  let idCheckbox = checkboxSeleccionado.id
+
+  fetch(baseUrl + "/usuario/" + idCheckbox, {method: "Delete"}).then(res =>{
+      console.log(res)
+      ObtenerUsuario()
+  })
+}
+
+
+function ImprimirUsuario(usuario){
+  let contenedor = document.getElementById("cuerpo-tabla")
+  contenedor.innerHTML = ""
+
+  usuario.forEach(a => {
+      contenedor.innerHTML += MapearUsuario(a)
+  })
+
+  let selectAllCheckbox = document.getElementById("selectAll")
+  let checkboxes = document.querySelectorAll('input[type="checkbox"]')
+
+  selectAllCheckbox.addEventListener('change', function () {
+      checkboxes.forEach(checkbox => {
+          checkbox.checked = selectAllCheckbox.checked;
+      });
+  });
+}
+
 
 
 function MapearUsuario(a) {
@@ -43,6 +145,9 @@ function MapearUsuario(a) {
     <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${a.contrasena}</td>
 </tr>`
 }
+
+
+
 
 
 
@@ -86,7 +191,9 @@ function añadirRegistro() {
             iconEliminar.className = "w-[21px] h-[19px] ml-[5px] mt-[4px]";
 
             btnEnviar.appendChild(iconEnviar);
-            btnEnviar.addEventListener('click', function () {});
+            btnEnviar.addEventListener('click', function () {
+              GuardarUsuario()
+            });
             
             btnEliminar.appendChild(iconEliminar);
             btnEliminar.addEventListener('click', function () {
@@ -102,11 +209,13 @@ function añadirRegistro() {
                 var fechaInput = document.createElement('input');
                 fechaInput.type = 'date';
                 fechaInput.className = "border border-solid border-gray-300 text-center px-2 py-1 w-full h-full box-border"; /* Le da estilo a las celdas agregadas formato fecha*/
+                fechaInput.id = "input" + i
                 nueva.appendChild(fechaInput);
             } else {
                 var registro = document.createElement('input');
                 registro.type = "text";
                 registro.className = "border border-solid border-gray-300 text-center px-2 py-1 w-full h-full box-border";  /* Le da estilo a las celdas agregadas formato texto*/
+                registro.id = "input" + i
                 nueva.appendChild(registro);
             }
         }
@@ -117,76 +226,72 @@ function añadirRegistro() {
 
 
 function hacerEditable() {
-    var table = document.getElementById('cuerpo-tabla');
-    var checkboxes = table.getElementsByClassName('seleccionar');
-  
-    for (var i = 0; i < checkboxes.length; i++) {
+  var table = document.getElementById('cuerpo-tabla');
+  var checkboxes = table.getElementsByClassName('seleccionar');
+
+  for (var i = 0; i < checkboxes.length; i++) {
       var checkbox = checkboxes[i];
-  
+
       if (checkbox.checked) {
-        var row = checkbox.closest('tr');
-  
-        if (!row.classList.contains('editable')) {
-          row.classList.add('editable');
-  
-          // Encuentra el checkbox y ocúltalo
-          var checkboxCell = row.cells[0];
-          var checkboxInput = checkboxCell.querySelector('input[type="checkbox"]');
-          checkboxInput.style.display = 'none';
-  
-          // Recorre todas las celdas de la fila, excepto la primera (checkbox)
-          for (var j = 1; j < row.cells.length; j++) {
-            var cell = row.cells[j];
-            var currentValue = cell.textContent;
-  
-            // Guarda el valor original de la celda
-            cell.setAttribute('data-original-value', currentValue);
-  
-           
-            var input = document.createElement('input');
-            input.type = 'text';
-            input.value = currentValue;
-  
-            
-            input.addEventListener('blur', function () {
-              guardarCambios(row, j, this.value);
-            });
-  
-            // Reemplaza la celda con el campo de entrada
-            cell.innerHTML = '';
-            cell.appendChild(input);
+          var row = checkbox.closest('tr');
+
+          if (!row.classList.contains('editable')) {
+              row.classList.add('editable');
+
+              // Encuentra el checkbox y ocúltalo
+              var checkboxCell = row.cells[0];
+              var checkboxInput = checkboxCell.querySelector('input[type="checkbox"]');
+              checkboxInput.style.display = 'none';
+
+              // Recorre todas las celdas de la fila, excepto la primera (checkbox)
+              for (var j = 1; j < row.cells.length; j++) {
+                  var cell = row.cells[j];
+                  var currentValue = cell.textContent;
+
+                  // Guarda el valor original de la celda
+                  cell.setAttribute('data-original-value', currentValue);
+
+                  // Crea un input con id dinámico
+                  var input = document.createElement('input');
+                  input.type = 'text';
+                  input.value = currentValue;
+                  input.id = 'input' + j; // Aquí se crea el id dinámico
+
+                  // Reemplaza la celda con el campo de entrada
+                  cell.innerHTML = '';
+                  cell.appendChild(input);
+              }
+
+              // Agrega botones a la celda del checkbox
+              var btnEnviar = document.createElement('button');
+              var iconEnviar = document.createElement('img');
+              iconEnviar.src = 'img/añadir.png';
+              iconEnviar.className = "bg-green-300 w-[18px] h-[18px] mt-[2px]";
+
+              var btnDeshacer = document.createElement('button');
+              var iconDeshacer = document.createElement('img');
+              iconDeshacer.src = 'img/cancelar.png';
+              iconDeshacer.className = "w-[18px] h-[18px] ml-[2px]";
+
+              btnEnviar.appendChild(iconEnviar);
+              btnEnviar.addEventListener('click', function () {
+                  ActualizarProyecto();
+              });
+
+              btnDeshacer.appendChild(iconDeshacer);
+              btnDeshacer.addEventListener('click', function () {
+                  // Elimina los botones antes de deshacer
+                  btnEnviar.remove();
+                  btnDeshacer.remove();
+                  deshacerCambios(row);
+              });
+
+              checkboxCell.appendChild(btnDeshacer);
+              checkboxCell.appendChild(btnEnviar);
           }
-  
-          // Agrega botones a la celda del checkbox
-          var btnEnviar = document.createElement('button');
-          var iconEnviar = document.createElement('img');
-          iconEnviar.src = 'img/añadir.png';
-          iconEnviar.className = "bg-green-300 w-[20px] h-[18px] ml-[2px] mt-[2px]";
-  
-          var btnDeshacer = document.createElement('button');
-          var iconDeshacer = document.createElement('img');
-          iconDeshacer.src = 'img/cancelar.png'; 
-          iconDeshacer.className = "w-[20px] h-[18px] ml-[2px] mt-[2px]";
-  
-          btnEnviar.appendChild(iconEnviar);
-          btnEnviar.addEventListener('click', function () {
-            // Agrega la lógica
-          });
-  
-          btnDeshacer.appendChild(iconDeshacer);
-          btnDeshacer.addEventListener('click', function () {
-            // Elimina los botones antes de deshacer
-            btnEnviar.remove();
-            btnDeshacer.remove();
-            deshacerCambios(row);
-          });
-  
-          checkboxCell.appendChild(btnDeshacer);
-          checkboxCell.appendChild(btnEnviar);
-        }
       }
-    }
   }
+}
   
   function guardarCambios(row, cellIndex, newValue) {
     // Actualiza el contenido de la celda con el nuevo valor

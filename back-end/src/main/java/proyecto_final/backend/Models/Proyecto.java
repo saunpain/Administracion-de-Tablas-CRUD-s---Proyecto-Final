@@ -1,6 +1,8 @@
 package proyecto_final.backend.Models;
 
 public class Proyecto {
+    private String codigoNuevo;
+
     private String cod_proyecto;
     private String tipo_proyecto;
     private String titulo_proyecto;
@@ -18,6 +20,21 @@ public class Proyecto {
     String Fecha_entrega, String Fecha_verificacion, String Fecha_evaluacion, String Fecha_aprobacion,
     String Fecha_sustentacion){
         cod_proyecto = Cod_proyecto;
+        tipo_proyecto = Tipo_proyecto;
+        titulo_proyecto = Titulo_proyecto;
+        cod_profesor = Cod_profesor;
+        fecha_entrega = Fecha_entrega;
+        fecha_verificacion = Fecha_verificacion;
+        fecha_evaluacion = Fecha_evaluacion;
+        fecha_aprobacion = Fecha_aprobacion;
+        fecha_sustentacion = Fecha_sustentacion;
+    }
+
+    public Proyecto(String Cod_proyecto, String CodigoNuevo, String Tipo_proyecto, String Titulo_proyecto, int Cod_profesor,
+    String Fecha_entrega, String Fecha_verificacion, String Fecha_evaluacion, String Fecha_aprobacion,
+    String Fecha_sustentacion){
+        cod_proyecto = Cod_proyecto;
+        codigoNuevo = CodigoNuevo;
         tipo_proyecto = Tipo_proyecto;
         titulo_proyecto = Titulo_proyecto;
         cod_profesor = Cod_profesor;
@@ -98,5 +115,13 @@ public class Proyecto {
 
     public void setFecha_sustentacion(String fecha_sustentacion) {
         this.fecha_sustentacion = fecha_sustentacion;
+    }
+
+    public String getCodigoNuevo() {
+        return codigoNuevo;
+    }
+
+    public void setCodigoNuevo(String codigoNuevo) {
+        this.codigoNuevo = codigoNuevo;
     }
 }

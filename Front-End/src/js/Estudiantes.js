@@ -93,12 +93,12 @@ function GuardarEstudiante(){
         seg_nom: document.getElementById("input3").value,
         pri_apellido: document.getElementById("input4").value,
         seg_apellido: document.getElementById("input5").value,
-        anio_cursa: document.getElementById("input11").value,
+        anio_cursa: document.getElementById("input10").value,
         semestre: "I",
-        indice: document.getElementById("input12").value,
+        indice: document.getElementById("input11").value,
         cod_proyecto: document.getElementById("input8").value,
-        cod_carrera: document.getElementById("input10").value,
-        cod_sede: document.getElementById("input13").value,
+        cod_carrera: document.getElementById("input9").value,
+        cod_sede: document.getElementById("input12").value,
     }
 
     console.log(data)
@@ -126,12 +126,13 @@ function ActualizarEstudiantes(){
         seg_nom: document.getElementById("input3").value,
         pri_apellido: document.getElementById("input4").value,
         seg_apellido: document.getElementById("input5").value,
-        anio_cursa: document.getElementById("input11").value,
-        semestre: "I",
-        indice: document.getElementById("input12").value,
+        telefono: document.getElementById("input6").value,
+        correo: document.getElementById("input7").value,
+        anio_cursa: document.getElementById("input10").value,
+        indice: document.getElementById("input11").value,
         cod_proyecto: document.getElementById("input8").value,
-        cod_carrera: document.getElementById("input10").value,
-        cod_sede: document.getElementById("input13").value,
+        cod_carrera: document.getElementById("input9").value,
+        cod_sede: document.getElementById("input12").value,
     }
 
     console.log(data)
@@ -143,6 +144,17 @@ function ActualizarEstudiantes(){
             "Content-type": "application/json; charset=UTF-8"
         }
     }).then(res => {
+        ObtenerEstudiantes()
+    })
+}
+
+function EliminarEstudiante(){
+
+    let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+    let idCheckbox = checkboxSeleccionado.id
+
+    fetch(baseUrl + "/estudiante/" + idCheckbox, {method: "Delete"}).then(res =>{
+        console.log(res)
         ObtenerEstudiantes()
     })
 }
@@ -176,10 +188,9 @@ function MapearEstudiantes(e) {
     <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${e.seg_nom}</td>
     <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${e.pri_apellido}</td>
     <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${e.seg_apellido}</td>
-    <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">0000-0000</td>
-    <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">aaa.eee @utp.ac.pa</td>
+    <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${e.telefono}</td>
+    <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${e.correo}</td>
     <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${e.cod_proyecto}</td>
-    <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">Evaluacion</td>
     <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${e.cod_carrera}</td>
     <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${e.anio_cursa}</td>
     <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${e.indice}</td>
@@ -227,7 +238,9 @@ function añadirRegistro() {
             iconEliminar.className = "w-[21px] h-[19px] ml-[5px] mt-[4px]";
 
             btnEnviar.appendChild(iconEnviar);
-            btnEnviar.addEventListener('click', function () {});
+            btnEnviar.addEventListener('click', function () {
+                GuardarEstudiante()
+            });
             
             btnEliminar.appendChild(iconEliminar);
             btnEliminar.addEventListener('click', function () {
@@ -248,6 +261,7 @@ function añadirRegistro() {
                 var registro = document.createElement('input');
                 registro.type = "text";
                 registro.className = "border border-solid border-gray-300 text-center px-2 py-1 w-full h-full box-border";  /* Le da estilo a las celdas agregadas formato texto*/
+                registro.id = "input" + i
                 nueva.appendChild(registro);
             }
         }
@@ -255,84 +269,73 @@ function añadirRegistro() {
     nuevaCelda.cells[0].querySelector('input').focus();
 }
 
-
-
 function hacerEditable() {
     var table = document.getElementById('cuerpo-tabla');
     var checkboxes = table.getElementsByClassName('seleccionar');
-  
+
     for (var i = 0; i < checkboxes.length; i++) {
-      var checkbox = checkboxes[i];
-  
-      if (checkbox.checked) {
-        var row = checkbox.closest('tr');
-  
-        if (!row.classList.contains('editable')) {
-          row.classList.add('editable');
-  
-          // Encuentra el checkbox y ocúltalo
-          var checkboxCell = row.cells[0];
-          var checkboxInput = checkboxCell.querySelector('input[type="checkbox"]');
-          checkboxInput.style.display = 'none';
-  
-          // Recorre todas las celdas de la fila, excepto la primera (checkbox)
-          for (var j = 1; j < row.cells.length; j++) {
-            var cell = row.cells[j];
-            var currentValue = cell.textContent;
-  
-            // Guarda el valor original de la celda
-            cell.setAttribute('data-original-value', currentValue);
-  
-           
-            var input = document.createElement('input');
-            input.type = 'text';
-            input.value = currentValue;
-  
-            
-            input.addEventListener('blur', function () {
-              guardarCambios(row, j, this.value);
-            });
-  
-            // Reemplaza la celda con el campo de entrada
-            cell.innerHTML = '';
-            cell.appendChild(input);
-          }
-  
-          // Agrega botones a la celda del checkbox
-          var btnEnviar = document.createElement('button');
-          var iconEnviar = document.createElement('img');
-          iconEnviar.src = 'img/añadir.png';
-          iconEnviar.className = "bg-green-300 w-[18px] h-[18px] mt-[2px]";
-  
-          var btnDeshacer = document.createElement('button');
-          var iconDeshacer = document.createElement('img');
-          iconDeshacer.src = 'img/cancelar.png'; 
-          iconDeshacer.className = "w-[18px] h-[18px] ml-[2px]";
-  
-          btnEnviar.appendChild(iconEnviar);
-          btnEnviar.addEventListener('click', function () {
-            ActualizarEstudiantes()
-          });
-  
-          btnDeshacer.appendChild(iconDeshacer);
-          btnDeshacer.addEventListener('click', function () {
-            // Elimina los botones antes de deshacer
-            btnEnviar.remove();
-            btnDeshacer.remove();
-            deshacerCambios(row);
-          });
-  
-          checkboxCell.appendChild(btnDeshacer);
-          checkboxCell.appendChild(btnEnviar);
+        var checkbox = checkboxes[i];
+
+        if (checkbox.checked) {
+            var row = checkbox.closest('tr');
+
+            if (!row.classList.contains('editable')) {
+                row.classList.add('editable');
+
+                // Encuentra el checkbox y ocúltalo
+                var checkboxCell = row.cells[0];
+                var checkboxInput = checkboxCell.querySelector('input[type="checkbox"]');
+                checkboxInput.style.display = 'none';
+
+                // Recorre todas las celdas de la fila, excepto la primera (checkbox)
+                for (var j = 1; j < row.cells.length; j++) {
+                    var cell = row.cells[j];
+                    var currentValue = cell.textContent;
+
+                    // Guarda el valor original de la celda
+                    cell.setAttribute('data-original-value', currentValue);
+
+                    // Crea un input con id dinámico
+                    var input = document.createElement('input');
+                    input.type = 'text';
+                    input.value = currentValue;
+                    input.id = 'input' + j; // Aquí se crea el id dinámico
+
+                    // Reemplaza la celda con el campo de entrada
+                    cell.innerHTML = '';
+                    cell.appendChild(input);
+                }
+
+                // Agrega botones a la celda del checkbox
+                var btnEnviar = document.createElement('button');
+                var iconEnviar = document.createElement('img');
+                iconEnviar.src = 'img/añadir.png';
+                iconEnviar.className = "bg-green-300 w-[18px] h-[18px] mt-[2px]";
+
+                var btnDeshacer = document.createElement('button');
+                var iconDeshacer = document.createElement('img');
+                iconDeshacer.src = 'img/cancelar.png';
+                iconDeshacer.className = "w-[18px] h-[18px] ml-[2px]";
+
+                btnEnviar.appendChild(iconEnviar);
+                btnEnviar.addEventListener('click', function () {
+                    ActualizarEstudiantes();
+                });
+
+                btnDeshacer.appendChild(iconDeshacer);
+                btnDeshacer.addEventListener('click', function () {
+                    // Elimina los botones antes de deshacer
+                    btnEnviar.remove();
+                    btnDeshacer.remove();
+                    deshacerCambios(row);
+                });
+
+                checkboxCell.appendChild(btnDeshacer);
+                checkboxCell.appendChild(btnEnviar);
+            }
         }
-      }
     }
-  }
-  
-  function guardarCambios(row, cellIndex, newValue) {
-    // Actualiza el contenido de la celda con el nuevo valor
-    row.cells[cellIndex].textContent = newValue;
-  }
+}
   
   function deshacerCambios(row) {
     // Deshace los cambios y sale del modo de edición
@@ -353,4 +356,3 @@ function hacerEditable() {
       cell.removeAttribute('data-original-value');
     }
   }
-  

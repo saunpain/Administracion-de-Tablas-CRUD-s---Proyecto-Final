@@ -1,6 +1,8 @@
 package proyecto_final.backend.Models;
 
 public class Profesor {
+    private int cod_profesorNuevo;
+
     private int cod_profesor;
     private String nombre_prof;
     private String apellido_prof;
@@ -17,6 +19,20 @@ public class Profesor {
     String Tipo_prof, String Cod_depto, String Telefono_profesor, 
     String Correo_profesor, String cedula_profesor){
         cod_profesor = Cod_profesor;
+        nombre_prof = Nombre_prof;
+        apellido_prof = Apellido_prof;
+        tipo_prof = Tipo_prof;
+        cod_depto = Cod_depto;
+        telefono_profesor = Telefono_profesor;
+        correo_profesor = Correo_profesor;
+        Cedula_profesor = cedula_profesor;
+    }
+
+    public Profesor(int Cod_profesor, int Cod_ProfesorNuevo, String Nombre_prof, String Apellido_prof,
+    String Tipo_prof, String Cod_depto, String Telefono_profesor, 
+    String Correo_profesor, String cedula_profesor){
+        cod_profesor = Cod_profesor;
+        cod_profesorNuevo = Cod_ProfesorNuevo;
         nombre_prof = Nombre_prof;
         apellido_prof = Apellido_prof;
         tipo_prof = Tipo_prof;
@@ -88,5 +104,13 @@ public class Profesor {
 
     public void setCedula_profesor(String cedula_profesor) {
         Cedula_profesor = cedula_profesor;
+    }
+
+    public int getCod_profesorNuevo() {
+        return cod_profesorNuevo;
+    }
+
+    public void setCod_profesorNuevo(int cod_profesorNuevo) {
+        this.cod_profesorNuevo = cod_profesorNuevo;
     }
 }

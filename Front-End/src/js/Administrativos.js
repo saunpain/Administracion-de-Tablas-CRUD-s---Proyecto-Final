@@ -11,6 +11,66 @@ function ObtenerAdministrativos(){
     })
 }
 
+function GuardarAdministrativo(){
+  let data = {
+      nombre_admin: document.getElementById("input1").value,
+      apellido_admin: document.getElementById("input2").value,
+      telefono_admin: document.getElementById("input3").value,
+      correo_admin: document.getElementById("input4").value,
+      Cedula_administrativo: document.getElementById("input5").value,
+  }
+
+  console.log(data)
+
+  fetch(baseUrl + "/administrativo", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
+  }).then(res => {
+      ObtenerAdministrativos()
+  })
+}
+
+function ActualizarAdministrativo(){
+
+  let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+  let idCheckbox = checkboxSeleccionado.id
+
+  let data = {
+    cod_admin: document.getElementById("input1").value,
+    nombre_admin: document.getElementById("input2").value,
+    apellido_admin: document.getElementById("input3").value,
+    telefono_admin: document.getElementById("input4").value,
+    correo_admin: document.getElementById("input5").value,
+    Cedula_administrativo: document.getElementById("input6").value,
+  }
+
+  console.log(data)
+
+  fetch(baseUrl + "/administrativo", {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
+  }).then(res => {
+      ObtenerAdministrativos()
+  })
+}
+
+function EliminarAdministrativo(){
+
+  let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+  let idCheckbox = checkboxSeleccionado.id
+
+  fetch(baseUrl + "/administrativo/" + idCheckbox, {method: "Delete"}).then(res =>{
+      console.log(res)
+      ObtenerAdministrativos()
+  })
+}
+
 function ImprimirAdministrativos(administrativos){
     let contenedor = document.getElementById("cuerpo-tabla")
     contenedor.innerHTML = ""
@@ -107,6 +167,7 @@ function añadirRegistro() {
                 var registro = document.createElement('input');
                 registro.type = "text";
                 registro.className = "border border-solid border-gray-300 text-center px-2 py-1 w-full h-full box-border";  /* Le da estilo a las celdas agregadas formato texto*/
+                registro.id = "input" + i
                 nueva.appendChild(registro);
             }
         }

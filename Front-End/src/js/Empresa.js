@@ -29,6 +29,79 @@ function ImprimirEmpresas(empresas){
     });
 }
 
+
+function GuardarEmpresa(){
+  let data = {
+      cod_empresa: document.getElementById("input1").value,
+      nombre_empresa: document.getElementById("input2").value,
+  }
+
+  console.log(data)
+
+  fetch(baseUrl + "/empresa", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
+  }).then(res => {
+      ObtenerEmpresas()
+  })
+}
+
+function ActualizarEmpresa(){
+
+  let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+  let idCheckbox = checkboxSeleccionado.id
+
+  let data = {
+    cod_empresa: document.getElementById("input1").value,
+    nombre_empresa: document.getElementById("input2").value,
+  }
+
+  console.log(data)
+
+  fetch(baseUrl + "/empresa", {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
+  }).then(res => {
+    ObtenerEmpresas()
+  })
+}
+
+function EliminarEmpresa(){
+
+  let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+  let idCheckbox = checkboxSeleccionado.id
+
+  fetch(baseUrl + "/empresa/" + idCheckbox, {method: "Delete"}).then(res =>{
+      console.log(res)
+      ObtenerEmpresas()
+  })
+}
+
+function ImprimirEmpresa(empresa){
+  let contenedor = document.getElementById("cuerpo-tabla")
+  contenedor.innerHTML = ""
+
+  empresa.forEach(a => {
+      contenedor.innerHTML += MapearEstudiantes(a)
+  })
+
+  let selectAllCheckbox = document.getElementById("selectAll")
+  let checkboxes = document.querySelectorAll('input[type="checkbox"]')
+
+  selectAllCheckbox.addEventListener('change', function () {
+      checkboxes.forEach(checkbox => {
+          checkbox.checked = selectAllCheckbox.checked;
+      });
+  });
+}
+
+
 function MapearEmpresas(a) {
     return `<tr>
     <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">

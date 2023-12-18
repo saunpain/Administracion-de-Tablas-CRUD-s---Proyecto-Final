@@ -25,6 +25,13 @@ public class Usuario {
         Cedula_estudiante = cedula_estudiante;
     }
 
+    public Usuario(int Cod_usuario, String Usuario, String Creado, String cedula_administrativo){
+        cod_usuario = Cod_usuario;
+        usuario = Usuario;
+        creado = Creado;
+        Cedula_administrativo = cedula_administrativo;
+    }
+
     public int getCod_usuario() {
         return cod_usuario;
     }

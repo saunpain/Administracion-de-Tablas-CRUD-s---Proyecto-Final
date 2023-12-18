@@ -43,11 +43,60 @@ public class DepartamentoDb {
         return departamentos;
     }
 
-        public int EliminarDepartamento(String cd){ //cd = Codigo Departamento
+        public int GuardarDepartamento(Departamento departamento){
+        int resultado = 0;
+        try{
+            System.out.println(departamento.getCod_depto());
+            System.out.println(departamento.getNombre_departamento());
+            System.out.println(departamento.getCod_profesor());
+
+            Statement stmt = cn.createStatement();
+            String query = "exec AñadirDepartamento " +
+            "'" + departamento.getCod_depto() + "', " +
+            "'" + departamento.getNombre_departamento() + "', " +
+            departamento.getCod_profesor() + " ";
+
+            resultado = stmt.executeUpdate(query);
+
+            stmt.close();
+
+            return resultado;
+        } catch (Exception e){
+            
+        }
+        return resultado;
+    }
+
+    public int ActualizarDepartamento(Departamento departamento){
+        int resultado = 0;
+        try{
+            System.out.println(departamento.getCod_depto());
+            System.out.println(departamento.getCod_deptoNuevo());
+            System.out.println(departamento.getNombre_departamento());
+            System.out.println(departamento.getCod_profesor());
+
+            Statement stmt = cn.createStatement();
+            String query = "exec ActualizarEstudiante " +
+            "'" + departamento.getCod_depto() + "', " +
+            "'" + departamento.getCod_deptoNuevo() + "', " +
+            "'" + departamento.getNombre_departamento() + "', " +
+            departamento.getCod_profesor() + " ";
+
+            resultado = stmt.executeUpdate(query);
+
+            stmt.close();
+            return resultado;
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
+
+    public int EliminarDepartamento(String codigo){
         int resultado = 0;
         try{
             Statement stmt = cn.createStatement();
-            String query = "delete from Departamento where cod_depto = '" + cd + "'";
+            String query = "exec EliminarDepartamento '" + codigo + "'";
 
             return stmt.executeUpdate(query);
         } catch (Exception e) {
