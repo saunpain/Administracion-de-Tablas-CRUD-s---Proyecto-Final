@@ -1,23 +1,23 @@
 let baseUrl = "http://localhost:8080"
-let carreras = []
-let filaSeleccionada = null;
-let valoresOriginales = {};
+let usuario = []
+let usuarioFiltro = []
 
-function ObtenerCarreras(){
-    fetch(baseUrl + "/carreras/all").then( res => {
+function ObtenerUsuario(){
+    fetch(baseUrl + "/usuario/all").then( res => {
         res.json().then(json => {
-            carreras = json
-            ImprimirAdministrativos()
+            usuario = json
+            ImprimirUsuario(usuario)
         })
     })
 }
 
-function ImprimirAdministrativos(){
+function ImprimirUsuario(usuario){
     let contenedor = document.getElementById("cuerpo-tabla")
     contenedor.innerHTML = ""
 
-    carreras.forEach(c => {
-        contenedor.innerHTML += MapearCarrera(c)
+    usuario.forEach(a => {
+        contenedor.innerHTML += MapearUsuario(a)
+        console.log(a)
     })
 
     let selectAllCheckbox = document.getElementById("selectAll")
@@ -30,17 +30,20 @@ function ImprimirAdministrativos(){
     });
 }
 
-function MapearCarrera(c) {
+
+function MapearUsuario(a) {
     return `<tr>
-        <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-            <input type="checkbox" id="${c.cod_carrera}" class="ml-3.5 seleccionar"/>
-            <label for="${c.cod_carrera}"></label>
-        </td>
-        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${c.cod_carrera}</td>
-        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${c.nombre_carrera}</td>
-        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${c.cod_depto}</td>
-    </tr>`
+    <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
+        <input type="checkbox" class="ml-3.5 seleccionar" id="${a.cod_usuario}" />
+        <label for="${a.cod_usuario}"></label>
+    </td>
+    <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${a.cod_usuario}</td>
+    <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${a.usuario}</td>
+    <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${a.creado}</td>
+    <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${a.contrasena}</td>
+</tr>`
 }
+
 
 
 /* Función para desplegar aside en celulares */
@@ -111,6 +114,8 @@ function añadirRegistro() {
     nuevaCelda.cells[0].querySelector('input').focus();
 }
 
+
+
 function hacerEditable() {
     var table = document.getElementById('cuerpo-tabla');
     var checkboxes = table.getElementsByClassName('seleccionar');
@@ -156,12 +161,12 @@ function hacerEditable() {
           var btnEnviar = document.createElement('button');
           var iconEnviar = document.createElement('img');
           iconEnviar.src = 'img/añadir.png';
-          iconEnviar.className = "bg-green-300 w-[19px] h-[18px]";
+          iconEnviar.className = "bg-green-300 w-[20px] h-[18px] ml-[2px] mt-[2px]";
   
           var btnDeshacer = document.createElement('button');
           var iconDeshacer = document.createElement('img');
           iconDeshacer.src = 'img/cancelar.png'; 
-          iconDeshacer.className = "w-[18px] h-[19px] ml-[2px] mt-[2px]";
+          iconDeshacer.className = "w-[20px] h-[18px] ml-[2px] mt-[2px]";
   
           btnEnviar.appendChild(iconEnviar);
           btnEnviar.addEventListener('click', function () {

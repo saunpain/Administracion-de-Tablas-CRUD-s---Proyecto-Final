@@ -1,23 +1,22 @@
 let baseUrl = "http://localhost:8080"
-let carreras = []
-let filaSeleccionada = null;
-let valoresOriginales = {};
+let sustentaciones = []
+let sustentacionesFiltro = []
 
-function ObtenerCarreras(){
-    fetch(baseUrl + "/carreras/all").then( res => {
+function ObtenerSustentaciones(){
+    fetch(baseUrl + "/sustentaciones/all").then( res => {
         res.json().then(json => {
-            carreras = json
-            ImprimirAdministrativos()
+            sustentaciones = json
+            ImprimirSustentaciones(sustentaciones)
         })
     })
 }
 
-function ImprimirAdministrativos(){
+function ImprimirSustentaciones(sustentaciones){
     let contenedor = document.getElementById("cuerpo-tabla")
     contenedor.innerHTML = ""
 
-    carreras.forEach(c => {
-        contenedor.innerHTML += MapearCarrera(c)
+    sustentaciones.forEach(p => {
+        contenedor.innerHTML += MapearSustentaciones(p)
     })
 
     let selectAllCheckbox = document.getElementById("selectAll")
@@ -30,18 +29,18 @@ function ImprimirAdministrativos(){
     });
 }
 
-function MapearCarrera(c) {
+function MapearSustentaciones(p) {
     return `<tr>
-        <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
-            <input type="checkbox" id="${c.cod_carrera}" class="ml-3.5 seleccionar"/>
-            <label for="${c.cod_carrera}"></label>
-        </td>
-        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${c.cod_carrera}</td>
-        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${c.nombre_carrera}</td>
-        <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${c.cod_depto}</td>
-    </tr>`
+    <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
+        <input type="checkbox" class="ml-3.5 seleccionar" id="${p.cod_proyecto}" />
+        <label for="${p.cod_proyecto}"></label>
+    </td>
+    <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${p.cod_profesor}</td>
+    <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${p.cod_proyecto}</td>
+    <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${p.lugar}</td>
+    <td class="border border-solid border-gray-300 text-center px-8 py-2 whitespace-nowrap text-gray-700">${p.nota_asignada}</td>
+</tr>`
 }
-
 
 /* Función para desplegar aside en celulares */
 document.addEventListener('DOMContentLoaded', function () {
@@ -75,12 +74,12 @@ function añadirRegistro() {
             var iconEnviar = document.createElement('img');
             iconEnviar.src = 'img/añadir.png';
             iconEnviar.className = "bg-green-300";
-            iconEnviar.className = "w-[21px] h-[19px] ml-[5px] mt-[4px]";
+            iconEnviar.className = "w-[21px] h-[18px] ml-[5px]";
 
             var btnEliminar = document.createElement('button');
             var iconEliminar = document.createElement('img');
             iconEliminar.src = 'img/cancelar.png';
-            iconEliminar.className = "w-[21px] h-[19px] ml-[5px] mt-[4px]";
+            iconEliminar.className = "w-[21px] h-[18px] ml-[5px] mt-[4px]";
 
             btnEnviar.appendChild(iconEnviar);
             btnEnviar.addEventListener('click', function () {});
@@ -156,12 +155,12 @@ function hacerEditable() {
           var btnEnviar = document.createElement('button');
           var iconEnviar = document.createElement('img');
           iconEnviar.src = 'img/añadir.png';
-          iconEnviar.className = "bg-green-300 w-[19px] h-[18px]";
+          iconEnviar.className = "bg-green-300 w-[18px] h-[18px] ml-[2px]";
   
           var btnDeshacer = document.createElement('button');
           var iconDeshacer = document.createElement('img');
           iconDeshacer.src = 'img/cancelar.png'; 
-          iconDeshacer.className = "w-[18px] h-[19px] ml-[2px] mt-[2px]";
+          iconDeshacer.className = "w-[18px] h-[18px] mt-[2px]";
   
           btnEnviar.appendChild(iconEnviar);
           btnEnviar.addEventListener('click', function () {

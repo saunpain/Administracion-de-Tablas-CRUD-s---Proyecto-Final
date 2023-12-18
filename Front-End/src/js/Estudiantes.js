@@ -6,10 +6,23 @@ function ObtenerEstudiantes(){
     fetch(baseUrl + "/estudiante/all").then( res => {
         res.json().then(json => {
             estudiantes = json
-            ImprimirCarreras(estudiantes)
+            ImprimirEstudiantes(estudiantes)
         })
     })
 }
+
+
+let inputNombre = document.getElementById("inputNombre")
+let inputIdentificacion = document.getElementById("inputIdentificacion")
+
+inputNombre.addEventListener('search', function(){
+    ObtenerEstudiantes()
+})
+
+inputIdentificacion.addEventListener('search', function(){
+    ObtenerEstudiantes()
+})
+
 
 function FiltrarEstudiantes() {
     let nombre = document.getElementById("inputNombre").value.trim() || null
@@ -62,28 +75,84 @@ function FiltrarEstudiantes() {
             break
     }
 
-    console.log(nombre)
-    console.log(identificacion)
-    console.log(carrera)
-    console.log(anio)
-
     fetch(baseUrl + `/estudiante/filtrar?nombre=${nombre}&identificacion=${identificacion}&carrera=${carrera}&anio=${anio}`).then(res => {
         res.json().then(json =>{
             estudiantesFiltro = json
             console.log(estudiantesFiltro)
-            ImprimirCarreras(estudiantesFiltro)
+            ImprimirEstudiantes(estudiantesFiltro)
         })
     }).catch(error => {
         console.error("Error en la solicitud:", error);
     });
 }
 
-function ImprimirCarreras(estudiantes){
+function GuardarEstudiante(){
+    let data = {
+        cedula: document.getElementById("input1").value,
+        pri_nom: document.getElementById("input2").value,
+        seg_nom: document.getElementById("input3").value,
+        pri_apellido: document.getElementById("input4").value,
+        seg_apellido: document.getElementById("input5").value,
+        anio_cursa: document.getElementById("input11").value,
+        semestre: "I",
+        indice: document.getElementById("input12").value,
+        cod_proyecto: document.getElementById("input8").value,
+        cod_carrera: document.getElementById("input10").value,
+        cod_sede: document.getElementById("input13").value,
+    }
+
+    console.log(data)
+
+    fetch(baseUrl + "/estudiante", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    }).then(res => {
+        ObtenerEstudiantes()
+    })
+}
+
+function ActualizarEstudiantes(){
+
+    let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+    let idCheckbox = checkboxSeleccionado.id
+
+    let data = {
+        cedula: idCheckbox,
+        cedulaNueva: document.getElementById("input1").value,
+        pri_nom: document.getElementById("input2").value,
+        seg_nom: document.getElementById("input3").value,
+        pri_apellido: document.getElementById("input4").value,
+        seg_apellido: document.getElementById("input5").value,
+        anio_cursa: document.getElementById("input11").value,
+        semestre: "I",
+        indice: document.getElementById("input12").value,
+        cod_proyecto: document.getElementById("input8").value,
+        cod_carrera: document.getElementById("input10").value,
+        cod_sede: document.getElementById("input13").value,
+    }
+
+    console.log(data)
+
+    fetch(baseUrl + "/estudiante", {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    }).then(res => {
+        ObtenerEstudiantes()
+    })
+}
+
+function ImprimirEstudiantes(estudiantes){
     let contenedor = document.getElementById("cuerpo-tabla")
     contenedor.innerHTML = ""
 
     estudiantes.forEach(e => {
-        contenedor.innerHTML += MapearCarreras(e)
+        contenedor.innerHTML += MapearEstudiantes(e)
     })
 
     let selectAllCheckbox = document.getElementById("selectAll")
@@ -96,7 +165,7 @@ function ImprimirCarreras(estudiantes){
     });
 }
 
-function MapearCarreras(e) {
+function MapearEstudiantes(e) {
     return `<tr>
     <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
         <input type="checkbox" class="ml-3.5 seleccionar" id="${e.cedula}" />
@@ -242,7 +311,7 @@ function hacerEditable() {
   
           btnEnviar.appendChild(iconEnviar);
           btnEnviar.addEventListener('click', function () {
-            // Agrega la lógica
+            ActualizarEstudiantes()
           });
   
           btnDeshacer.appendChild(iconDeshacer);

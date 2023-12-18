@@ -126,11 +126,52 @@ public class EstudianteDb {
         return resultado;
     }
 
+    public int ActualizarEstudiante(Estudiante estudiante){
+        int resultado = 0;
+        try{
+            System.out.println(estudiante.getCedula());
+            System.out.println(estudiante.getCedulaNueva());
+            System.out.println(estudiante.getPri_nom());
+            System.out.println(estudiante.getSeg_nom());
+            System.out.println(estudiante.getPri_apellido());
+            System.out.println(estudiante.getSeg_apellido());
+            System.out.println(estudiante.getAnio_cursa());
+            System.out.println(estudiante.getSemestre());
+            System.out.println(estudiante.getIndice());
+            System.out.println(estudiante.getCod_proyecto());
+            System.out.println(estudiante.getCod_carrera());
+            System.out.println(estudiante.getCod_sede());
+
+            Statement stmt = cn.createStatement();
+            String query = "exec ActualizarEstudiante " +
+            "'" + estudiante.getCedula() + "', " +
+            "'" + estudiante.getCedulaNueva() + "', " +
+            "'" + estudiante.getPri_nom() + "', " +
+            "'" + estudiante.getSeg_nom() + "', " +
+            "'" + estudiante.getPri_apellido() + "', " +
+            "'" + estudiante.getSeg_apellido() + "', " +
+            estudiante.getAnio_cursa() + ", " +
+            "'" + estudiante.getSemestre() + "', " +
+            estudiante.getIndice() + ", " +
+            "'" + estudiante.getCod_proyecto() + "', " +
+            "'" + estudiante.getCod_carrera() + "', " +
+            "'" + estudiante.getCod_sede() + "'";
+
+            resultado = stmt.executeUpdate(query);
+
+            stmt.close();
+            return resultado;
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
+
     public int EliminarEstudiante(String cedula){
         int resultado = 0;
         try{
             Statement stmt = cn.createStatement();
-            String query = "delete from Estudiante where cedula = '" + cedula + "'";
+            String query = "exec EliminarEstudiante '" + cedula + "'";
 
             return stmt.executeUpdate(query);
         } catch (Exception e) {

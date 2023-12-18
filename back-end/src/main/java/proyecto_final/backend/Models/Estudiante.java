@@ -1,6 +1,8 @@
 package proyecto_final.backend.Models;
 
 public class Estudiante {
+    private String cedulaNueva;
+
     private String cedula;
     private String pri_nom;
     private String seg_nom;
@@ -20,6 +22,24 @@ public class Estudiante {
     String Seg_apellido, int Anio_cursa, String Semestre, float Indice, String Cod_proyecto, 
     String Cod_carrera, String Cod_sede)
     {
+        cedula = Cedula;
+        pri_nom = Pri_nom;
+        seg_nom = Seg_nom;
+        pri_apellido = Pri_apellido;
+        seg_apellido = Seg_apellido;
+        anio_cursa = Anio_cursa;
+        semestre = Semestre;
+        indice = Indice;
+        cod_proyecto = Cod_proyecto;
+        cod_carrera = Cod_carrera;
+        cod_sede = Cod_sede;
+    }
+
+    public Estudiante(String CedulaNueva, String Cedula, String Pri_nom, String Seg_nom, String Pri_apellido, 
+    String Seg_apellido, int Anio_cursa, String Semestre, float Indice, String Cod_proyecto, 
+    String Cod_carrera, String Cod_sede)
+    {
+        cedulaNueva = CedulaNueva;
         cedula = Cedula;
         pri_nom = Pri_nom;
         seg_nom = Seg_nom;
@@ -119,5 +139,13 @@ public class Estudiante {
 
     public void setCod_sede(String cod_sede) {
         this.cod_sede = cod_sede;
+    }
+
+    public String getCedulaNueva() {
+        return cedulaNueva;
+    }
+
+    public void setCedulaNueva(String cedulaNueva) {
+        this.cedulaNueva = cedulaNueva;
     }
 }

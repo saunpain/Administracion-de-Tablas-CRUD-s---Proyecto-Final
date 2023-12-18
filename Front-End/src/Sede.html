@@ -74,7 +74,7 @@
     }
 </style>
 
-<body class="bg-[#F6F6F6F7] m-0 p-0 w-full h-full box-border">
+<body class="bg-[#F6F6F6F7] m-0 p-0 w-full h-full box-border" onload="ObtenerSede()">
     <header class="top-0 w-full bg-[#18561E] fixed z-[2]">
         <div class="flex items-center justify-between  px-4 py-2">
             <div class="flex items-center">
@@ -190,7 +190,7 @@
 
                 <div class="mt-8 ml-1">
                     <button onclick="añadirRegistro()" class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-2 py-2 md:px-4 lg:px-4 xl:px-4 2xl:px-5 font-roboto text-md mb-2 md:mb-0 md:mr-4">Añadir</button>
-                    <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-2 py-2 md:px-4 lg:px-4 xl:px-4 2xl:px-5 ml-4 font-roboto text-md mb-2 md:mb-0 md:mr-4">Actualizar</button>
+                    <button onclick="hacerEditable()" class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-2 py-2 md:px-4 lg:px-4 xl:px-4 2xl:px-5 ml-4 font-roboto text-md mb-2 md:mb-0 md:mr-4">Actualizar</button>
                     <button class="hover:bg-[#18561E] bg-[#237C2C] text-white rounded px-2 py-2 md:px-4 lg:px-4 xl:px-4 2xl:px-5 ml-4 font-roboto text-md">Eliminar</button>
                 </div>
             </div>
@@ -245,5 +245,6 @@
             <p>© 2023 - Universidad Tecnológica de Panamá</p>
         </div>
     </footer>
+    <script src="js/Sede.js"></script>
 </body>
 </html>
