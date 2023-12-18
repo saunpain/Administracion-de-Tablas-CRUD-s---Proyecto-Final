@@ -38,9 +38,7 @@ function añadirRegistro() {
             iconEliminar.className = "w-[21px] h-[19px] ml-[5px] mt-[4px]";
 
             btnEnviar.appendChild(iconEnviar);
-            btnEnviar.addEventListener('click', function () {
-                
-            });
+            btnEnviar.addEventListener('click', function () {});
             
             btnEliminar.appendChild(iconEliminar);
             btnEliminar.addEventListener('click', function () {
