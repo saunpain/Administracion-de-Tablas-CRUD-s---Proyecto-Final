@@ -44,11 +44,60 @@ public class Proyecto_profesor_sustentaDb{
         return sustentaciones;
     }
 
-    public int EliminarSustentaciones(String cprof){ //cprof = Codigo Profesor
+
+    public int GuardarSustentacion(Proyecto_profesor_sustenta sustentaciones){
         int resultado = 0;
         try{
             Statement stmt = cn.createStatement();
-            String query = "delete from Proyecto_profesor_sustenta where cod_profesor = '" + cprof + "'";
+            String query = "exec AñadirSustentacion " 
+            + sustentaciones.getCod_profesor() + ", " 
+            + "'" + sustentaciones.getCod_proyecto() + "', " 
+            + "'" + sustentaciones.getLugar() + "', "
+            + "'" + sustentaciones.getNota_asignada() + "'";
+
+            resultado = stmt.executeUpdate(query);
+
+            stmt.close();
+
+            return resultado;
+        } catch (Exception e){
+            
+        }
+        return resultado;
+    }
+
+    public int ActualizarSustentacion(Proyecto_profesor_sustenta Sustentacion){
+        int resultado = 0;
+        try{
+            System.out.println(Sustentacion.getCod_profesor());
+            System.out.println(Sustentacion.getCod_profesorNuevo());
+            System.out.println(Sustentacion.getCod_proyecto());
+            System.out.println(Sustentacion.getLugar());
+            System.out.println(Sustentacion.getNota_asignada());
+
+            Statement stmt = cn.createStatement();
+            String query = "exec ActualizarSustentaciones " +
+            + Sustentacion.getCod_profesor() + ", " 
+            + Sustentacion.getCod_profesorNuevo() + ", " 
+            + "'" + Sustentacion.getCod_proyecto() + "', " 
+            + "'" + Sustentacion.getLugar() + "', " 
+            + "'" + Sustentacion.getNota_asignada() + "', ";
+
+            resultado = stmt.executeUpdate(query);
+
+            stmt.close();
+            return resultado;
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
+
+    public int EliminarSustentacion(String codigo){ 
+        int resultado = 0;
+        try{
+            Statement stmt = cn.createStatement();
+            String query = "exec EliminarSustentacion " + codigo;
 
             return stmt.executeUpdate(query);
         } catch (Exception e) {

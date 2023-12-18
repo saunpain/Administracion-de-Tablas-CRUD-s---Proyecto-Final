@@ -9,6 +9,64 @@ function ObtenerEvaluacion(){
             ImprimirEvaluacion(evaluacion)
         })
     })
+} /*private String fecha_evaluacionNueva;
+private String fecha_evaluacion;
+private String cod_proyecto;
+private String evaluacion */
+
+
+function GuardarEvaluacion(){
+  let data = {
+      fecha_evaluacion: document.getElementById("input1").value,
+      cod_proyecto: document.getElementById("input2").value,
+      evaluacion: document.getElementById("input3").value,
+    }
+      fetch(baseUrl + "/evaluacion", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+      }).then(res => {
+        ObtenerEvaluacion()
+      })
+  }
+
+  
+function ActualizarEvaluacion(){
+
+  let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+  let idCheckbox = checkboxSeleccionado.id
+
+  let data = {
+    fecha_evaluacionNueva: document.getElementById("input1").value,
+    fecha_evaluacion: document.getElementById("input2").value,
+    cod_proyecto: document.getElementById("input3").value,
+    evaluacion: document.getElementById("input4").value,
+  }
+
+  console.log(data)
+  fetch(baseUrl + "/evaluacion", {
+    method: "PUT",
+    body: JSON.stringify(data),
+    headers: {
+        "Content-type": "application/json; charset=UTF-8"
+    }
+    }).then(res => {
+      ObtenerEvaluacion()
+    })
+
+}
+
+function EliminarEvaluacion(){
+
+  let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+  let idCheckbox = checkboxSeleccionado.id
+
+  fetch(baseUrl + "/evaluacion/" + idCheckbox, {method: "Delete"}).then(res =>{
+      console.log(res)
+      ObtenerEvaluacion()
+  })
 }
 
 function ImprimirEvaluacion(evaluacion){

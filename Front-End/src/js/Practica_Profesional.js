@@ -11,6 +11,60 @@ function ObtenerPracticaP(){
     })
 }
 
+function GuardarPractica(){
+  let data = {
+      cod_proyecto: document.getElementById("input1").value,
+      cod_supervisor: document.getElementById("input2").value,
+  }
+
+  console.log(data)
+
+  fetch(baseUrl + "/practica", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
+  }).then(res => {
+      ObtenerPracticaP()
+  })
+}
+
+function ActualizarPractica(){
+
+  let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+  let idCheckbox = checkboxSeleccionado.id
+
+  let data = {
+      cod_proyecto: idCheckbox,
+      cod_proyectoNuevo: document.getElementById("input1").value,
+      cod_supervisor: document.getElementById("input2").value,
+  }
+
+  console.log(data)
+
+  fetch(baseUrl + "/practica", {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
+  }).then(res => {
+      ObtenerPracticaP()
+  })
+}
+
+function EliminarPractica(){
+
+  let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+  let idCheckbox = checkboxSeleccionado.id
+
+  fetch(baseUrl + "/practica/" + idCheckbox, {method: "Delete"}).then(res =>{
+      console.log(res)
+      ObtenerPracticaP()
+  })
+}
+
 function ImprimirPracticaP(practP){
     let contenedor = document.getElementById("cuerpo-tabla")
     contenedor.innerHTML = ""
@@ -105,6 +159,7 @@ function añadirRegistro() {
                 var registro = document.createElement('input');
                 registro.type = "text";
                 registro.className = "border border-solid border-gray-300 text-center px-2 py-1 w-full h-full box-border";  /* Le da estilo a las celdas agregadas formato texto*/
+                registro.id = "input" + i
                 nueva.appendChild(registro);
             }
         }

@@ -12,7 +12,63 @@ function ObtenerCarreras(){
     })
 }
 
-function ImprimirAdministrativos(){
+function GuardarCarrera(){
+    let data = {
+        cod_carrera: document.getElementById("input1").value,
+        nombre_carrera: document.getElementById("input2").value,
+        cod_depto: document.getElementById("input3").value,
+    }
+
+    console.log(data)
+
+    fetch(baseUrl + "/carreras", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    }).then(res => {
+        ObtenerCarreras()
+    })
+}
+
+function ActualizarCarrera(){
+
+    let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+    let idCheckbox = checkboxSeleccionado.id
+
+    let data = {
+        cod_carrera: idCheckbox,
+        cod_carreraNuevo: document.getElementById("input1").value,
+        nombre_carrera: document.getElementById("input2").value,
+        cod_depto: document.getElementById("input3").value,
+    }
+
+    console.log(data)
+
+    fetch(baseUrl + "/carreras", {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    }).then(res => {
+        ObtenerCarreras()
+    })
+}
+
+function EliminarCarrera(){
+
+    let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+    let idCheckbox = checkboxSeleccionado.id
+
+    fetch(baseUrl + "/carreras/" + idCheckbox, {method: "Delete"}).then(res =>{
+        console.log(res)
+        ObtenerCarreras()
+    })
+}
+
+function ImprimirCarrera(){
     let contenedor = document.getElementById("cuerpo-tabla")
     contenedor.innerHTML = ""
 
@@ -104,6 +160,7 @@ function añadirRegistro() {
                 var registro = document.createElement('input');
                 registro.type = "text";
                 registro.className = "border border-solid border-gray-300 text-center px-2 py-1 w-full h-full box-border";  /* Le da estilo a las celdas agregadas formato texto*/
+                registro.id = "input" + i
                 nueva.appendChild(registro);
             }
         }

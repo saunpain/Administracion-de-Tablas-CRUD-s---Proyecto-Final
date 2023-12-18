@@ -8,6 +8,7 @@ import java.util.List;
 
 import proyecto_final.backend.Helpers.Conexion;
 import proyecto_final.backend.Models.Carrera;
+import proyecto_final.backend.Models.Estudiante;
 
 public class CarreraDb {
     
@@ -43,11 +44,60 @@ public class CarreraDb {
         return carreras;
     }
 
-    public int EliminarCarrera(String cc){ //cc = Codigo Carrera
+public int GuardarCarrera(Carrera carrera){
+        int resultado = 0;
+        try{
+            System.out.println(carrera.getCod_carrera());
+            System.out.println(carrera.getNombre_carrera());
+            System.out.println(carrera.getCod_depto());
+
+            Statement stmt = cn.createStatement();
+            String query = "exec AñadirCarrera " +
+            "'" + carrera.getCod_carrera() + "', " +
+            "'" + carrera.getNombre_carrera() + "', " +
+            "'" + carrera.getCod_depto() + "'";
+
+            resultado = stmt.executeUpdate(query);
+
+            stmt.close();
+
+            return resultado;
+        } catch (Exception e){
+            
+        }
+        return resultado;
+    }
+
+    public int ActualizarCarrera(Carrera carrera){
+        int resultado = 0;
+        try{
+            System.out.println(carrera.getCod_carrera());
+            System.out.println(carrera.getCod_carreraNuevo());
+            System.out.println(carrera.getNombre_carrera());
+            System.out.println(carrera.getCod_depto());
+
+            Statement stmt = cn.createStatement();
+            String query = "exec ActualizarCarrera " +
+            "'" + carrera.getCod_carrera() + "', " +
+            "'" + carrera.getCod_carreraNuevo() + "', " +
+            "'" + carrera.getNombre_carrera() + "', " +
+            "'" + carrera.getCod_depto() + "'";
+
+            resultado = stmt.executeUpdate(query);
+
+            stmt.close();
+            return resultado;
+        } catch (Exception e) {
+
+        }
+        return resultado;
+    }
+
+    public int EliminarCarrera(String codigo){
         int resultado = 0;
         try{
             Statement stmt = cn.createStatement();
-            String query = "delete from Carrera where cod_carrera = '" + cc + "'";
+            String query = "exec EliminarCarrera '" + codigo + "'";
 
             return stmt.executeUpdate(query);
         } catch (Exception e) {

@@ -29,6 +29,88 @@ function ImprimirSustentaciones(sustentaciones){
     });
 }
 
+function GuardarSustentaciones(){
+
+  let data = {
+    cod_profesor: document.getElementById("input1").value,
+    cod_proyecto: document.getElementById("input2").value,
+    lugar: document.getElementById("input3").value,
+    nota_asignada: document.getElementById("input4").value,
+  }
+
+  console.log(data)
+
+  fetch(baseUrl + "/sustentaciones", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
+  }).then(res => {
+    ObtenerSustentaciones()//cambiar
+  })
+}
+
+function ImprimirSustentaciones(sustentaciones){
+  let contenedor = document.getElementById("cuerpo-tabla")
+  contenedor.innerHTML = ""
+
+  sustentaciones.forEach(p => {
+      contenedor.innerHTML += MapearSustentaciones(p)
+      console.log(p)
+  })
+
+  let selectAllCheckbox = document.getElementById("selectAll")
+  let checkboxes = document.querySelectorAll('input[type="checkbox"]')
+
+  selectAllCheckbox.addEventListener('change', function () {
+      checkboxes.forEach(checkbox => {
+          checkbox.checked = selectAllCheckbox.checked;
+      });
+  });
+}
+
+function ActualizarSustentaciones(){
+
+  let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+  let idCheckbox = checkboxSeleccionado.id
+
+  let data = {
+    cod_profesor: idCheckbox,
+    cod_profesorNuevo: document.getElementById("input1").value,
+    cod_proyecto: document.getElementById("input3").value,
+    lugar: document.getElementById("input4").value,
+    nota_asignada: document.getElementById("input5").value,
+  }
+
+  console.log(data)
+
+  fetch(baseUrl + "/sustentaciones", {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
+  }).then(res  => {
+    ObtenerSustentaciones()
+  })
+}
+
+
+
+function EliminarSustentaciones(){
+
+  let checkboxSeleccionado = document.querySelector('input[type="checkbox"]:checked')
+  let idCheckbox = checkboxSeleccionado.id
+
+  fetch(baseUrl + "/sustentaciones/" + idCheckbox, {method: "Delete"}).then(res =>{
+      console.log(res)
+      ObtenerSustentaciones()
+  })
+}
+
+
+
 function MapearSustentaciones(p) {
     return `<tr>
     <td class="checkbox px-2 appearance-none border border-solid border-gray-300 rounded-full w-5 h-5 cursor-pointer checked:bg-gray-700">
@@ -103,6 +185,7 @@ function añadirRegistro() {
                 var registro = document.createElement('input');
                 registro.type = "text";
                 registro.className = "border border-solid border-gray-300 text-center px-2 py-1 w-full h-full box-border";  /* Le da estilo a las celdas agregadas formato texto*/
+                registro.id = "input" + i
                 nueva.appendChild(registro);
             }
         }

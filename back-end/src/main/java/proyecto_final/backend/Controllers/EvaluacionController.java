@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
 
+import proyecto_final.backend.Models.Estudiante;
 import proyecto_final.backend.Models.Evaluacion;
+import proyecto_final.backend.Services.EstudianteDb;
 import proyecto_final.backend.Services.EvaluacionDb;
 
 @RestController
@@ -15,8 +17,18 @@ public class EvaluacionController {
         return new EvaluacionDb().ObtenerTodasLasEvaluaciones();
     }
 
-    @DeleteMapping("/evaluacion/{fechaEvaluacion}")
-    public int Delete(@PathVariable("fechaEvaluacion") String f){
-        return new EvaluacionDb().EliminarEvaluacion(f);
+    @PostMapping("/evaluacion")
+    public int InsertarEvaluacion(@RequestBody Evaluacion evaluacion) {
+        return new EvaluacionDb().GuardarEvaluacion(evaluacion);
+    }
+
+    @PutMapping("/evaluacion")
+    public int ActualizarEvaluacion(@RequestBody Evaluacion evaluacion) {
+        return new EvaluacionDb().ActualizarEvaluacion(evaluacion);
+    }
+
+    @DeleteMapping("/evaluacion/{fecha}")
+    public int Delete(@PathVariable("fecha") String fecha){
+        return new EvaluacionDb().EliminarEvaluacion(fecha);
     }
 }
