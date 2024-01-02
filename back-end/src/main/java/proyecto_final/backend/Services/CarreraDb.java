@@ -8,7 +8,6 @@ import java.util.List;
 
 import proyecto_final.backend.Helpers.Conexion;
 import proyecto_final.backend.Models.Carrera;
-import proyecto_final.backend.Models.Estudiante;
 
 public class CarreraDb {
     

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import proyecto_final.backend.Helpers.Conexion;
-import proyecto_final.backend.Models.Estudiante;
 import proyecto_final.backend.Models.Evaluacion;
 
 public class EvaluacionDb{

@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import proyecto_final.backend.Models.Estudiante;
 import proyecto_final.backend.Models.Proyecto_profesor_sustenta;
-import proyecto_final.backend.Services.EstudianteDb;
 import proyecto_final.backend.Services.Proyecto_profesor_sustentaDb;
 
 @RestController

@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import proyecto_final.backend.Models.Carrera;
-import proyecto_final.backend.Models.Estudiante;
 import proyecto_final.backend.Services.CarreraDb;
-import proyecto_final.backend.Services.EstudianteDb;
 
 @RestController
 public class CarreraController {

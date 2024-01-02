@@ -57,7 +57,10 @@ public class EstudianteDb {
         try{
             Statement stmt = cn.createStatement();
             String query = "exec FiltrarEstudiantes " + nombre + ", " + carrera + ", " + identificacion + ", " + anio;
+            String queryNoNull = "exec FiltrarEstudiantes " + nombre + ", " + carrera + ", " + identificacion + ", " + anio;
             ResultSet rs = stmt.executeQuery(query);
+
+            System.out.println(query);
             
             while(rs.next()){
                 Estudiante estudiante = new Estudiante(
@@ -111,7 +114,6 @@ public class EstudianteDb {
             "'" + estudiante.getPri_apellido() + "', " +
             "'" + estudiante.getSeg_apellido() + "', " +
             estudiante.getAnio_cursa() + ", " +
-            "'" + estudiante.getSemestre() + "', " +
             estudiante.getIndice() + ", " +
             "'" + estudiante.getCod_proyecto() + "', " +
             "'" + estudiante.getCod_carrera() + "', " +

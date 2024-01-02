@@ -15,7 +15,6 @@ function FiltrarProfesores() {
     let nombre = document.getElementById("inputNombre").value.trim() || null
     let departamento = document.getElementById("selectDepartamento").value
     let tipo = document.getElementById("selectTipo").value
-    console.log(tipo)
     let sede = document.getElementById("selectSede").value
 
     switch (departamento) {

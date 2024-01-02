@@ -6,11 +6,11 @@ function ObtenerEstudiantes(){
     fetch(baseUrl + "/estudiante/all").then( res => {
         res.json().then(json => {
             estudiantes = json
+            console.log(estudiantes)
             ImprimirEstudiantes(estudiantes)
         })
     })
 }
-
 
 let inputNombre = document.getElementById("inputNombre")
 let inputIdentificacion = document.getElementById("inputIdentificacion")
@@ -74,6 +74,11 @@ function FiltrarEstudiantes() {
             anio = null
             break
     }
+
+    console.log(nombre)
+    console.log(identificacion)
+    console.log(carrera)
+    console.log(anio)
 
     fetch(baseUrl + `/estudiante/filtrar?nombre=${nombre}&identificacion=${identificacion}&carrera=${carrera}&anio=${anio}`).then(res => {
         res.json().then(json =>{

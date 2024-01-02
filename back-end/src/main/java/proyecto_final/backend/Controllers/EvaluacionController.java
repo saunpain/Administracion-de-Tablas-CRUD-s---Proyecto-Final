@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
 
-import proyecto_final.backend.Models.Estudiante;
 import proyecto_final.backend.Models.Evaluacion;
-import proyecto_final.backend.Services.EstudianteDb;
 import proyecto_final.backend.Services.EvaluacionDb;
 
 @RestController
